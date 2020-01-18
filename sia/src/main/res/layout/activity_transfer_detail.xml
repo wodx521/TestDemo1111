@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_bg"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_item_height"
+            android:layout_marginTop="@dimen/dp_20">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15" />
+
+            <ImageView
+                android:id="@+id/back_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:contentDescription="@null"
+                android:gravity="center"
+                android:padding="@dimen/dp_5"
+                android:src="@drawable/back_arrow" />
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_15"
+            app:cardCornerRadius="@dimen/dp_10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_20">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/ivTransferStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/dengdai" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_10"
+                    android:textColor="@color/gray_normal" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/amount1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/etAmount"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/etAmount" />
+
+                    <EditText
+                        android:id="@+id/etAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:padding="@dimen/dp_5"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/barrier"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/minerFee"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/etMinerFee"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/etMinerFee" />
+
+                    <EditText
+                        android:id="@+id/etMinerFee"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:inputType="numberDecimal"
+                        android:padding="@dimen/dp_5"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/barrier"
+                        app:layout_constraintTop_toBottomOf="@id/etAmount" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/receivedAddress"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/etRecivedAddress"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/etRecivedAddress" />
+
+                    <EditText
+                        android:id="@+id/etRecivedAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:padding="@dimen/dp_5"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintEnd_toStartOf="@id/tvCopy"
+                        app:layout_constraintStart_toEndOf="@id/barrier"
+                        app:layout_constraintTop_toBottomOf="@id/etMinerFee" />
+
+                    <TextView
+                        android:id="@+id/tvCopy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/copy"
+                        app:layout_constraintBottom_toBottomOf="@id/etRecivedAddress"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/etRecivedAddress"
+                        app:layout_constraintTop_toTopOf="@id/etRecivedAddress" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/payAddress"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/etPayAddress"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/etPayAddress" />
+
+                    <EditText
+                        android:id="@+id/etPayAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:padding="@dimen/dp_5"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintEnd_toStartOf="@id/tvCopy1"
+                        app:layout_constraintStart_toEndOf="@id/barrier"
+                        app:layout_constraintTop_toBottomOf="@id/etRecivedAddress" />
+
+                    <TextView
+                        android:id="@+id/tvCopy1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/copy"
+                        app:layout_constraintBottom_toBottomOf="@id/etPayAddress"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/etPayAddress"
+                        app:layout_constraintTop_toTopOf="@id/etPayAddress" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/remarks1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/etRemarks"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/etRemarks" />
+
+                    <EditText
+                        android:id="@+id/etRemarks"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:padding="@dimen/dp_5"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/barrier"
+                        app:layout_constraintTop_toBottomOf="@id/etPayAddress" />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/transparent"
+                        app:layout_constraintTop_toBottomOf="@id/etRemarks" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/tradeOrderNum"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/etTradeOrder"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/etTradeOrder" />
+
+                    <EditText
+                        android:id="@+id/etTradeOrder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_15"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:padding="@dimen/dp_5"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintEnd_toStartOf="@id/tvCopy2"
+                        app:layout_constraintStart_toEndOf="@id/barrier"
+                        app:layout_constraintTop_toBottomOf="@id/view1" />
+
+                    <TextView
+                        android:id="@+id/tvCopy2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/copy"
+                        app:layout_constraintBottom_toBottomOf="@id/etTradeOrder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/etTradeOrder"
+                        app:layout_constraintTop_toTopOf="@id/etTradeOrder" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:text="@string/block"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintBottom_toBottomOf="@id/etBlockNum"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/etBlockNum" />
+
+                    <EditText
+                        android:id="@+id/etBlockNum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:padding="@dimen/dp_5"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/barrier"
+                        app:layout_constraintTop_toBottomOf="@id/etTradeOrder" />
+
+                    <androidx.constraintlayout.widget.Barrier
+                        android:id="@+id/barrier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:barrierDirection="end"
+                        app:constraint_referenced_ids="textView4,textView5,textView6,textView7,textView8,textView9,textView10" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvJump"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:drawableStart="@drawable/change_logo"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="到 Etherscan 查询更详细信息>"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</ScrollView>

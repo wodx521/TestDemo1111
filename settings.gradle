@@ -1,0 +1,4 @@
+include ':KLineChartLib', ':client', ':push', ':mars-core-release', ':imagepicker', ':emojilibrary', ':avenginekit'
+include ':sia'
+include ':avenginekit', ':mars-core-release', ':client', ':emojilibrary', ':imagepicker', ':push'
+rootProject.name = 'TestDemo'

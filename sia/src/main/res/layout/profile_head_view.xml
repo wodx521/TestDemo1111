@@ -1,0 +1,142 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:background="@drawable/geren"
+    android:gravity="bottom">
+
+    <LinearLayout
+        android:id="@+id/person_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_60"
+        android:paddingBottom="@dimen/dp_20">
+
+        <LinearLayout
+            android:id="@+id/user_info_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/dp_5"
+            android:orientation="horizontal">
+
+            <!--            <com.wanou.framelibrary.weight.CircleImageView-->
+            <!--                android:id="@+id/my_image"-->
+            <!--                android:layout_width="@dimen/dp_65"-->
+            <!--                android:layout_height="@dimen/dp_65"-->
+            <!--                app:civ_border_color="@color/white"-->
+            <!--                app:civ_border_width="@dimen/dp_1" />-->
+
+            <ImageView
+                android:id="@+id/my_image"
+                android:layout_width="@dimen/dp_65"
+                android:layout_height="@dimen/dp_65" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/username_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_18" />
+
+                <TextView
+                    android:id="@+id/tvUserNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:gravity="center_vertical"
+                    android:text="@string/id"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/dp_10"
+                android:text="@string/person_main_page"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_text_16"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/dp_20"
+                android:src="@drawable/android_list_idex_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/llLockEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAirdropLock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="0.00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_text_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/airdropLock"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="@dimen/sp_text_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llLockPrivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvPrivatePlacementLockUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_text_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/privatePlacementLockUp"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="@dimen/sp_text_14" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

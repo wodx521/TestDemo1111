@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_160"
+            android:layout_marginTop="@dimen/dp_100"
+            android:background="@drawable/path"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_180"
+            android:background="#EC5151"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/back_iv"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_50"
+                    android:padding="@dimen/dp_15"
+                    android:src="@drawable/back_arrow_w" />
+
+                <TextView
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/record_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_15"
+                    android:text="@string/redLog"
+                    android:textColor="#FFD685" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/head_iv"
+                    android:layout_width="@dimen/dp_45"
+                    android:layout_height="@dimen/dp_45"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/default_headimg" />
+
+                <TextView
+                    android:id="@+id/name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text=""
+                    android:textColor="#FFD685"
+                    android:textSize="@dimen/sp_18" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvRedName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="center"
+                android:textColor="#FFD685"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/tip_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textColor="#FFD685"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/money_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="0.00 SIA"
+                android:textColor="#FFD685"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_10"
+        android:background="@color/body_bg" />
+
+    <TextView
+        android:id="@+id/total_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10" />
+
+    <com.lr.sia.mywidget.view.PageView
+        android:id="@+id/page_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/divide_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divide_hight"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divide_line" />
+
+            <com.github.jdsjlzx.recyclerview.LRecyclerView
+                android:id="@+id/refresh_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.github.jdsjlzx.recyclerview.LRecyclerView>
+        </LinearLayout>
+    </com.lr.sia.mywidget.view.PageView>
+</LinearLayout>

@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lr.sia">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" /> <!-- 支持iBeancon 需要蓝牙权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- 支持个推3.0 电子围栏功能 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="com.shsk.shop.activity.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- Optional for location -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 保存或读出图片还应该添加读写权限 -->
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" /> <!-- 添加程序访问网络的权限 -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.ADD_VOICEMAIL" />
+    <uses-permission android:name="android.permission.USE_SIP" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" /> <!-- 读取联系人权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 拨打电话权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 读取短信权限 -->
+    <uses-permission android:name="android.permission.READ_SMS" /> <!-- 开机启动权限 -->
+    <!-- <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> -->
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" /> <!-- 融云permission -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="MediaStore.Images.Media.INTERNAL_CONTENT_URI" />
+    <uses-permission android:name="MediaStore.Images.Media.EXTERNAL_CONTENT_URI" /> <!-- ⼩米 配置开始 < -->
+    <uses-permission android:name="cn.rongcloud.im.permission.MIPUSH_RECEIVE" /> <!-- ⼩米 配置结束 < -->
+    <uses-permission android:name="cn.rongcloud.im.permission.C2D_MESSAGE" /> <!-- GCM 配置结束 < -->
+    <!-- 华为 配置开始 < -->
+    <!-- HMS-SDK引导升级HMS功能，访问OTA服务器需要网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- HMS-SDK引导升级HMS功能，保存下载的升级包需要SD卡写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 检测网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 检测wifi状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 为了获取用户手机的IMEI，用来唯一的标识用户。 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 如果是安卓8.0，应用编译配置的targetSdkVersion>=26，请务必添加以下权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- 华为 配置结束 < -->
+    <!-- MeiZu 配置开始 < -->
+    <!-- 兼容 flyme5.0 以下版本，魅族内部集成 pushSDK 必填，不然无法收到 消息 -->
+    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
+    <uses-permission android:name="cn.rongcloud.im.push.permission.MESSAGE" /> <!-- 兼容 flyme3.0 配置权限 -->
+    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" /> <!-- MeiZu 配置结束 < -->
+    <!-- OPPPO 权限配置 -->
+    <uses-permission android:name="com.coloros.mcs.permission.SEND_MCS_MESSAGE" /> <!-- OPPO 配置结束 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <application
+        android:name="com.lr.sia.basic.BasicApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name_main"
+        android:networkSecurityConfig="@xml/net_request"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon,android:label,android:allowBackup,android:name,android:networkSecurityConfig">
+
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+        <!--
+ <meta-data
+            tools:replace="android:value"
+            android:name="RONG_CLOUD_APP_KEY"
+            android:value="k51hidwqk4j8b" />
+        -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.lr.sia.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!--            <meta-data-->
+            <!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+            <!--                android:resource="@xml/rc_file_path" />-->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.SplashActivity"
+            android:label="@string/app_name_main"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter android:label="@string/app_name_main">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="www.example.com"
+                    android:pathPrefix="/gizmos"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent" />
+
+        <meta-data
+            android:name="com.lr.sia.utils.imageload.MyGlideModule"
+            android:value="MyGlideModule" />
+
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.GuideViewPageActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.MainActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+
+        </activity>
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.RegistActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent" /> <!-- 注册 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.RemeberCodeActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent" /> <!-- 单词助记 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.CodeCheckActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent" /> <!-- 单词校验 -->
+
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.ResetLoginPassActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent" /> <!-- 重置登录密码 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.ResetLoginPassButActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent" /> <!-- 用户信息页面 -->
+        <!-- 用户信息页面 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.ShowDetailPictrue"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/YourTheme"
+            android:windowSoftInputMode="stateHidden" /> <!-- 申请成功界面 -->
+        <!-- html界面 还款协议 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle1.activity.HtmlActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:process=":RemoteProcess"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent"
+            android:windowSoftInputMode="stateHidden" /> <!-- pdf界面 还款协议 -->
+
+        <service android:name="com.lr.sia.service.DownloadService" />
+        <service
+            android:name="com.lr.sia.service.InitService"
+            android:exported="false" /> <!-- 总资产 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.IdCardEditActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent" /> <!-- 发帖 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.TestScanActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent" /> <!-- 扫描发票 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.AboutActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent"
+            android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- 联系客服 -->
+        <!-- 安全中心 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.SecurityActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent"
+            android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- 安全中心  二维码校验 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.SecurityCheckActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent"
+            android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- 重置支付密码 -->
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.ResetPayPassButActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|smallestScreenSize|screenLayout|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent"
+            android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- 收款方式 -->
+        <meta-data
+            android:name="InstallChannel"
+            android:value="CHANNAL" /> <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="323b7a8263daed5d750ed6492ea216ad" />
+
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.PersonInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.FansListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.EditUserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.ChangeNickNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.RedLogActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.RewardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle4.activity.DetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.SystemNoticeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.SettingActivity1"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.ChangePhoneActivity1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.ChangePassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.ChangePhoneActivity2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle2.activity.MarketDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle1.activity.CoinInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle1.activity.ReceiveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle1.activity.TransferActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle1.activity.TransferDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.ShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.ConnectServiceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.ForgetPassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle4.activity.PrivatePlacementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle4.activity.PrivatePlacementDesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle4.activity.ProjectDesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle4.activity.WhitePaperActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle4.activity.PrivatePlacementLogActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.LockProfitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.ProfitLogActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.LockEmptyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.PrivateLockActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle5.activity.ReleaseLockActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ui.moudle5.activity.RedInviteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.VerifyRobotActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle4.activity.NewsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.LoginActivity1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.RegisterActivity1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle.activity.ForgetPassActivity1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.ConversationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <service android:name="com.lr.sia.service.SocketService" />
+
+        <activity
+            android:name="cn.wildfire.chat.kit.user.SetAliasActivity"
+            android:label="设置用户备注"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.wildfire.chat.kit.user.ChangeMyNameActivity"
+            android:label="修改昵称"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="cn.wildfire.chat.kit.mm.TakePhotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen" />
+        <activity
+            android:name="com.lr.sia.ui.moudle3.location.ui.activity.MyLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.SetGroupNameActivity"
+            android:label="修改群名称"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.lr.sia.ui.moudle3.location.ui.activity.ShowLocationActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="cn.wildfire.chat.kit.mm.MMPreviewActivity"
+            android:theme="@style/AppTheme.FullScreen" />
+        <activity android:name="cn.wildfire.chat.kit.voip.SingleVoipCallActivity">
+            <intent-filter>
+                <action android:name="${applicationId}.kit.voip.single" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.CreateConversationActivity"
+            android:label="创建会话" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.AddGroupMemberActivity"
+            android:label="添加新成员" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.RemoveGroupMemberActivity"
+            android:label="删除群成员" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.mention.MentionGroupMemberActivity"
+            android:label="选择群成员" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.GroupListActivity"
+            android:label="群列表" />
+        <activity
+            android:name="cn.wildfire.chat.kit.contact.newfriend.FriendRequestListActivity"
+            android:label="好友请求" />
+        <activity
+            android:name="cn.wildfire.chat.kit.contact.newfriend.SearchUserActivity"
+            android:label="搜索用户" />
+        <activity
+            android:name="cn.wildfire.chat.kit.contact.newfriend.InviteFriendActivity"
+            android:label="邀请好友" />
+        <activity
+            android:name="cn.wildfire.chat.kit.user.UserInfoActivity"
+            android:label="用户信息" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.ConversationInfoActivity"
+            android:label="会话详情" />
+        <activity
+            android:name="cn.wildfire.chat.kit.chatroom.ChatRoomListActivity"
+            android:label="聊天室列表" />
+        <activity
+            android:name="cn.wildfire.chat.kit.search.SearchPortalActivity"
+            android:label="搜索中心" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.forward.ForwardActivity"
+            android:label="转发" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.forward.PickConversationTargetToForwardActivity"
+            android:label="选取会话" />
+        <activity
+            android:name="cn.wildfire.chat.kit.channel.ChannelListActivity"
+            android:label="频道列表" />
+
+        <activity
+            android:name="cn.wildfire.chat.kit.channel.CreateChannelActivity"
+            android:label="创建频道"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize" />
+
+        <activity android:name="cn.wildfire.chat.kit.channel.ChannelInfoActivity" />
+        <!--        <activity-->
+        <!--            android:name="cn.wildfire.chat.app.main.MainActivity"-->
+        <!--            android:label="火信"-->
+        <!--            android:launchMode="singleTask">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="${applicationId}.main" />-->
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+        <activity android:name="cn.wildfire.chat.kit.WfcWebViewActivity">
+            <intent-filter>
+                <action android:name="${applicationId}.webview" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="cn.wildfire.chat.kit.search.SearchMessageActivity" />
+        <activity android:name="cn.wildfire.chat.kit.channel.SearchChannelActivity" />
+        <activity android:name="cn.wildfire.chat.kit.group.PickGroupMemberActivity" />
+        <activity android:name="cn.wildfire.chat.kit.qrcode.QRCodeActivity" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.GroupInfoActivity"
+            android:label="群信息" />
+        <activity
+            android:name="cn.wildfire.chat.kit.qrcode.ScanQRCodeActivity"
+            android:label="扫一扫" />
+        <activity android:name="cn.wildfire.chat.kit.group.manage.GroupManageActivity" />
+        <activity android:name="cn.wildfire.chat.kit.group.manage.GroupManagerListActivity" />
+        <activity android:name="cn.wildfire.chat.kit.group.manage.AddGroupManagerActivity" />
+        <activity android:name="cn.wildfire.chat.kit.group.manage.GroupMuteActivity" />
+        <activity android:name="cn.wildfire.chat.kit.group.manage.GroupMemberPermissionActivity" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.GroupMemberListActivity"
+            android:label="群成员列表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="cn.wildfire.chat.kit.contact.pick.PickContactActivity"
+            android:label="联系人选择" />
+        <activity android:name=".ui.moudle4.activity.ExchangeActivity" />
+        <activity android:name=".ui.moudle4.activity.ExchangeRecordAvtivity" />
+        <activity android:name=".ui.moudle3.activity.AddFriendActivity1" />
+        <activity android:name=".ui.moudle3.activity.GroupInfoChangeActivity" />
+        <activity android:name=".ui.moudle3.activity.GroupNoticeChangeActivity" />
+        <activity android:name=".ui.moudle3.activity.GroupTeamActivity" />
+        <activity android:name=".ui.moudle3.activity.RedListActivity" />
+        <activity android:name=".ui.moudle3.activity.RedMoneyActivity1" />
+        <activity android:name=".ui.moudle3.activity.TransferInfoActivity" />
+        <activity android:name=".ui.moudle3.activity.TransferMoneyActivity1" />
+        <activity android:name=".ui.moudle3.activity.UserInfoActivity1" />
+    </application>
+
+</manifest>

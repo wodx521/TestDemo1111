@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/search_toolbar" />
+
+    <com.lr.sia.mywidget.view.PageView
+        android:id="@+id/pageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.jdsjlzx.recyclerview.LRecyclerView
+            android:id="@+id/rvSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_search" />
+
+    </com.lr.sia.mywidget.view.PageView>
+</LinearLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/dp_10"
+            android:src="@drawable/chongzhi" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="BTC"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_type_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="比特币"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/sp_12" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_money_shi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="市值¥ 11000亿"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/sp_12"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_money_rmb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¥666.66"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tv_money_usdt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="666USDT"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/sp_12" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_rate"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@drawable/background_corners_green"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:text="+10.00%"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divide_hight"
+        android:background="@color/divide_line" />
+</LinearLayout>

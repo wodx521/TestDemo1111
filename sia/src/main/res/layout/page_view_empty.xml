@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/page_view_empty"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/page_view_empty_text"
+        style="@style/page_view_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableTop="@drawable/icon_common_empty"
+        android:drawablePadding="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_20"
+        android:paddingBottom="@dimen/dp_50"
+        android:text="@string/page_view_emtpy" />
+</LinearLayout>

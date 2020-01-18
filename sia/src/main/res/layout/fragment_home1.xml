@@ -1,0 +1,130 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/body_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/index_top_layout_person"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_item_height"
+        android:layout_marginTop="@dimen/dp_25"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/titleText"
+            style="@style/title_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/bottom_index"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_banner"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingStart="@dimen/dp_10"
+                android:paddingEnd="@dimen/dp_10">
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:gravity="center"
+                    android:text="@string/wallet"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/sp_15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:textColor="@color/text_white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView26"
+                    app:layout_constraintWidth_percent="0.4" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:src="@drawable/erweimacode"
+                    app:layout_constraintBottom_toBottomOf="@id/tvCode"
+                    app:layout_constraintStart_toEndOf="@id/tvCode"
+                    app:layout_constraintTop_toBottomOf="@id/textView26" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_more"
+                    app:layout_constraintBottom_toBottomOf="@id/textView26"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/textView26" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/userAsset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/dp_15"
+                android:padding="@dimen/dp_10"
+                android:text="0.00"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_18" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.lr.sia.mywidget.view.PageView
+        android:id="@+id/page_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/person_lay">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.github.jdsjlzx.recyclerview.LRecyclerView
+                android:id="@+id/mRefreshListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/body_bg" />
+        </LinearLayout>
+    </com.lr.sia.mywidget.view.PageView>
+
+</LinearLayout>

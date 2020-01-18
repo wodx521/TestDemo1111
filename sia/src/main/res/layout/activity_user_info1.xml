@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_200"
+        android:adjustViewBounds="true"
+        android:src="@drawable/shape_transfer_bg1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:background="@drawable/shape_white_bg_fillet5"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_5"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tvChat"
+        app:layout_constraintEnd_toStartOf="@id/tvChat" />
+
+    <TextView
+        android:id="@+id/tvChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:background="@drawable/shape_white_bg_fillet5"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="@string/chat"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/imageView"
+        app:layout_constraintEnd_toEndOf="@id/imageView" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivUserIcon"
+        android:layout_width="@dimen/dp_55"
+        android:layout_height="@dimen/dp_55"
+        android:layout_marginStart="@dimen/dp_20"
+        android:src="@drawable/head"
+        app:layout_constraintBottom_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tvFansNum"
+        app:layout_constraintStart_toEndOf="@id/ivUserIcon"
+        app:layout_constraintTop_toTopOf="@id/ivUserIcon" />
+
+    <TextView
+        android:id="@+id/tvFansNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="0 粉丝"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ivUserIcon"
+        app:layout_constraintStart_toEndOf="@id/ivUserIcon"
+        app:layout_constraintTop_toBottomOf="@id/tvUserName" />
+
+    <TextView
+        android:id="@+id/tvFavoriteNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="0 关注"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ivUserIcon"
+        app:layout_constraintStart_toEndOf="@id/tvFansNum"
+        app:layout_constraintTop_toBottomOf="@id/tvUserName" />
+
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/toolbar_layout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/title_item_height"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

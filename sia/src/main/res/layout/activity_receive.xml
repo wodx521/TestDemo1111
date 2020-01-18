@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_item_height"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_15" />
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:gravity="center"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/back_arrow" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/tvReceiveAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_5"
+            android:textColor="@color/gray" />
+
+        <TextView
+            android:id="@+id/tvCopy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_next"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingEnd="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_5"
+            android:text="@string/copyReveive"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        android:layout_margin="@dimen/dp_10" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10">
+
+        <ImageView
+            android:id="@+id/ivReceiveCode"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/erweimacode"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <TextView
+            android:id="@+id/tvSaveImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/btn_next"
+            android:paddingStart="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingEnd="@dimen/dp_20"
+            android:paddingBottom="@dimen/dp_5"
+            android:text="@string/saveReceive"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivReceiveCode" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

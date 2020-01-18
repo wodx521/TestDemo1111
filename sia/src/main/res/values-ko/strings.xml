@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_main">Shopinvesta</string>
+    <string name="action_settings">설정</string>
+    <string name="cancel">취소</string>
+    <string name="confirm">확인</string>
+    <string name="sure">확인</string>
+    <string name="shuzi_zimu">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="bottom_index">홈</string>
+    <string name="bottom_chat">채팅</string>
+    <string name="bottom_heyue">따옴표</string>
+    <string name="bottom_otc">정보</string>
+    <string name="mine">내</string>
+    <string name="page_view_emtpy">데이터가없습니다.새로고침을클릭하십시오</string>
+    <string name="page_view_network_error_hint">네트워크요청실패\n다시시도하려면클릭하십시오</string>
+    <string name="please_input_tuijian_code">추천코드를입력하십시오</string>
+    <string name="please_input_pass_code">로그인비밀번호를입력하십시오</string>
+    <string name="please_input_pass_code_again">로그인비밀번호를다시입력하십시오</string>
+    <string name="please_input_jiaoyi_code">거래비밀번호를입력하십시오</string>
+    <string name="please_input_jiaoyi_code_again">거래비밀번호를다시입력하십시오</string>
+    <string name="login_account_tip2">휴대전화번호/이메일주소</string>
+    <string name="forget_pass">비밀번호를잊어버렸습니까?</string>
+    <string name="alreda_account">이미계정이있습니까?</string>
+    <string name="login_password">로그인비밀번호</string>
+    <string name="code_regisger">지금가입하십시오</string>
+    <string name="regist_account_phone_code">인증코드</string>
+    <string name="regist_account_phone_code_send">인증코드받기</string>
+    <string name="regist_account_email">메일박스등록</string>
+    <string name="reset_passwored">비밀번호설정</string>
+    <string name="reset_passwored_again">비밀번호를다시입력하십시오</string>
+    <string name="app_name">SealTalk</string>
+    <string name="seal_login_text_login">로그인</string>
+    <string name="seal_login_phone_number">휴대전화번호</string>
+    <string name="seal_login_toast_passwords_invalid">비밀번호는대소문자를구분하여6-20자여야합니다</string>
+    <string name="seal_login_toast_passwords_do_not_match">입력한확인비밀번호가새비밀번호와일치하지않습니다</string>
+    을입력중입니다.
+    <string name="seal_conversation_title_defult">채팅</string>
+    <string name="profile_search_message">채팅기록보기</string>
+    <string name="profile_message_notice">메시지가방해받지않음</string>
+    <string name="profile_set_top">인기대화</string>
+    <string name="profile_clean_message">채팅기록지우기</string>
+    <string name="profile_screen_shot_notification">스크린샷알림</string>
+    <string name="profile_screen_shot_notification_tips">연후대화에서스크린샷을찍으면모든회원에게알림이전송됩니다</string>
+    <string name="profile_clean_timing">예약된정리그룹메시지</string>
+    <string name="profile_clean_timing_tips">예약된정리가수행된후시스템은지정된시간전에그룹메시지를주기적으로정리합니다.정리된메시지를복구할수없습니다.신중하게설정하십시오</string>
+    <string name="profile_all_group_member">모든그룹회원</string>
+    <string name="profile_group_portrait">그룹아바타</string>
+    <string name="profile_group_name">그룹이름</string>
+    <string name="profile_group_notice">그룹공지사항</string><![CDATA[
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    >
+    )
+    ]]>
+    <string name="profile_group_qrcode">그룹QR코드</string>
+    <string name="profile_group_manager">그룹관리</string>
+    <string name="seal_dialog_select_clean_time_36">36시간전메시지정리</string>
+    <string name="seal_dialog_select_clean_time_3">3일전메시지정리</string>
+    <string name="seal_dialog_select_clean_time_7">7일전메시지정리</string>
+    <string name="seal_set_clean_time_fail">설정실패</string>
+    <string name="seal_set_clean_time_state_not">시간을설정하십시오</string>
+    <string name="seal_set_clean_time_not_owner_tip">소유자만설정할수있습니다</string>
+    <string name="seal_grant_permissions">설정에서권한을설정해야합니다</string>
+    <string name="person_main_page">개인홈페이지</string>
+    <string name="id">ID:</string>
+    <string name="id1">ID</string>
+    <string name="but_submit">제출</string>
+    <string name="but_sure">확인</string>
+    <string name="but_apply">적용</string>
+    <string name="but_back">뒤로</string>
+    <string name="code_phone_tip">SMS인증코드를성공적으로얻었습니다</string>
+    <string name="set_new_pass">새비밀번호설정</string>
+    <string name="sure_new_pass">새비밀번호확인</string>
+    <string name="set_new_pass_tip">6-16자리숫자와문자조합을입력하십시오</string>
+    <string name="sure_new_pass_tip">새비밀번호를다시입력하십시오</string>
+    <string name="must_has_shuzi">숫자를포함해야합니다</string>
+    <string name="must_has_zimu">문자를포함해야합니다</string>
+    <string name="id_card_check2">실명인증</string>
+    <string name="msg_code_again">다시가져오기</string>
+    <string name="toast_login_again">로그인사용자의ID가만료되어다시로그인해야합니다</string>
+    <string name="toast_no_active">이계정은활성화되지않았습니다.새계정을활성화하거나기존계정을선택하십시오</string>
+    <string name="share_text">공유등록</string>
+    <string name="welcome_pager">시작페이지</string>
+    <string name="net_error">네트워크연결에실패했습니다.네트워크상태를확인하십시오</string>
+    <string name="test_code">인증코드</string>
+    <string name="next">다음단계</string>
+    <string name="please_input_message_code">인증코드를입력하십시오</string>
+    <string name="phoneNumber">휴대전화번호</string>
+    <string name="sign_up_email_hint">메일박스</string>
+    <string name="inputVerificationCode">인증코드를입력하십시오</string>
+    <string name="number">숫자</string>
+    <string name="time">시간</string>
+    <string name="coinName">이름</string>
+    <string name="search">검색</string>
+    <string name="exit">로그아웃</string>
+    <string name="inputPhone">전화번호를입력하십시오</string>
+    <string name="inputEmail">이메일주소를입력하십시오</string>
+    <string name="changePhone">전화변경</string>
+    <string name="inputPhoneNum">휴대전화번호를입력하십시오</string>
+    <string name="aboutUS">회사소개</string>
+    <string name="changeEmail">이메일수정</string>
+    <string name="loginPass">로그인비밀번호</string>
+    <string name="tradePass">거래비밀번호</string>
+    <string name="verificationCode">인증코드</string>
+    <string name="sendVerificationCode">인증코드받기</string>
+    <string name="inputOldPass">원래비밀번호를입력하십시오</string>
+    <string name="inputNewPass">새비밀번호를입력하십시오</string>
+    <string name="totalAmount2">총금액</string>
+    <string name="walletAddress">지갑주소:</string>
+    <string name="inputEmailCode">이메일인증코드를입력하십시오</string>
+    <string name="_24HVolume">24시간거래량</string>
+    <string name="change">수정</string>
+    <string name="phoneRegex">^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$</string>
+    <string name="inputRightPhone">올바른전화번호를입력하십시오</string>
+    <string name="finish">완료</string>
+    <string name="loading_tip">-</string>
+    <string name="beenApprove">신원이검토되었습니다</string>
+    <string name="registerUser">새사용자등록</string>
+    <string name="inputEmailAccount">이메일계정을입력하십시오</string>
+    <string name="recordNotice">백업니모닉이올바른지확인하려면기록순서대로니모닉을클릭하십시오</string>
+    <string name="loginPassErrorNotice">로그인비밀번호가일치하지않습니다</string>
+    <string name="tradePassErrorNotice">거래비밀번호가일치하지않습니다</string>
+    <string name="inputRigthEmail">정확한이메일번호를입력하십시오</string>
+    <string name="lastChat">최근채팅</string>
+    <string name="myAttention">내주의사항</string>
+    <string name="myGroup">내그룹</string>
+    <string name="recentlyChat">최근채팅</string>
+    <string name="watchList">관심목록</string>
+    <string name="joinedGroup">가입된그룹</string>
+    <string name="chat">개인채팅</string>
+    <string name="favorite">팔로우</string>
+    <string name="beenFavorite">팔로우</string>
+    <string name="addGroup">그룹채팅참여</string>
+    <string name="groupNum">현재그룹채팅수:0명</string>
+    <string name="groupId">그룹채팅ID</string>
+    <string name="copy1">클릭하여복사</string>
+    <string name="userBalance">사용가능한잔액:%sSIA</string>
+    <string name="userBalance1">사용가능한잔액:%sSIA≈%wCNY</string>
+    <string name="redMoneyDes">부유하고행운을빕니다축하합니다</string>
+    <string name="defaultRed"><![CDATA[0.00<font><small>SIA</small></font>]]></string>
+    <string name="transferInternal">내부이체</string>
+    <string name="recived">수신자</string>
+    <string name="transferNumber">전송횟수</string>
+    <string name="defaultFee">거래수수료:%sSIA</string>
+    <string name="transferDes">전송지침:</string>
+    <string name="transfer">전송</string>
+    <string name="remainingRed">빨간봉투%,남은%w</string>
+    <string name="remainingRed1">빨간패킷%,납치</string>
+    <string name="reRed">%s 빨간봉투</string>
+    <string name="transferLog">전송레코드</string>
+    <string name="rewardLog">내 청구서</string>
+    <string name="inviteShare">공유홍보</string>
+    <string name="systemNotice">시스템공지사항</string>
+    <string name="setting">시스템설정</string>
+    <string name="aboutUs">회사소개</string>
+    <string name="contactService">고객서비스문의</string>
+    <string name="resume">계속</string>
+    <string name="failure">인증실패</string>
+    <string name="title_dialog">팁</string>
+    <string name="message_permission_rationale">프로그램에다음권한을부여하십시오.\n\n%1$s</string>
+    <string name="message_permission_always_failed">휴대전화의설정인터페이스로이동하여다음권한을승인하십시오.\n\n%1$s</string>
+    <string name="message_install_failed">응용프로그램을설치하려면알수없는출처를열수있는권한이필요합니다.권한을활성화하려면설정으로이동하십시오</string>
+    <string name="personInfo">개인홈페이지</string>
+    <string name="edit">편집</string>
+    <string name="fans">팬</string>
+    <string name="concerned">팔로우</string>
+    <string name="notConcerned">따르지않음</string>
+    <string name="avatar">아바타</string>
+    <string name="nickName">닉네임</string>
+    <string name="account_information">계정정보</string>
+    <string name="Camera">사진촬영</string>
+    <string name="chooseImage">앨범선택</string>
+    <string name="inputNickName">닉네임을입력하십시오</string>
+    <string name="changeNickName">닉네임변경</string>
+    <string name="recivedId">ID</string>
+    <string name="rewardType">보상방법</string>
+    <string name="rewardNumber">보상횟수</string>
+    <string name="news">뉴스</string>
+    <string name="newsDetail">뉴스세부사항</string>
+    <string name="systemDetail">시스템정보</string>
+    <string name="announcement">공지사항</string>
+    <string name="announcementContent">발표내용</string>
+    <string name="redEnvelopeRecord">빨간봉투레코드</string>
+    <string name="email">이메일계정</string>
+    <string name="language">시스템언어</string>
+    <string name="currencyUnit">통화단위</string>
+    <string name="systemSetting">시스템설정</string>
+    <string name="inputOldPhoneNum">원래전화번호를입력하십시오</string>
+    <string name="noVerificationPhone">원래전화번호를확인할수없습니까?</string>
+    <string name="inputNewPhoneNum">새전화번호를입력하십시오</string>
+    <string name="inputOldEmail">원래이메일계정을입력하십시오</string>
+    <string name="inputNewEmailNum">새이메일계정을입력하십시오</string>
+    <string name="inputNewPassAgain">새비밀번호를다시입력하십시오</string>
+    <string name="changeLoginPass">로그인비밀번호변경</string>
+    <string name="changeTradePass">거래비밀번호변경</string>
+    <string name="noVerificationEmail">원래편지함을확인할수없습니까?</string>
+    <string name="_24HVolumeGlobal">글로벌거래량(24시간):</string>
+    <string name="outline">개요</string>
+    <string name="publishTime">출시시간</string>
+    <string name="officialWebsite">공식 웹 사이트</string>
+    <string name="leastTradeLog">최근거래내역</string>
+    <string name="receipt">지불금받기</string>
+    <string name="copyReveive">지불주소복사</string>
+    <string name="saveReceive">지불코드저장</string>
+    <string name="currentBalance">현재잔액:</string>
+    <string name="transferAmount">이체금액:</string>
+    <string name="minerFee">광부수수료:</string>
+    <string name="remarks1">비고:</string>
+    <string name="inputReceiveAddress">수취인지갑주소를입력하십시오</string>
+    <string name="inputTransferAmount">이체금액을입력하십시오</string>
+    <string name="optional">선택사항</string>
+    <string name="amount1">금액:</string>
+    <string name="receivedAddress">지불주소:</string>
+    <string name="payAddress">지불주소:</string>
+    <string name="block">블록:</string>
+    <string name="transferDetail">전송세부사항</string>
+    <string name="tradeOrderNum">거래번호:</string>
+    <string name="inputPhoneEmail">전화번호/이메일주소를입력하십시오</string>
+    <string name="inputAccountPass">계정비밀번호를입력하십시오</string>
+    <string name="sendRed">빨간봉투보내기</string>
+    <string name="redNum">빨간봉투수</string>
+    <string name="inputRedAmount">빨간봉투의총량을입력하십시오</string>
+    <string name="inputRedNumber">빨간패킷수를입력하십시오</string>
+    <string name="totalNum">이그룹의%s</string>
+    <string name="groupManager">그룹관리</string>
+    <string name="changeGroupInfo">그룹정보수정</string>
+    <string name="groupName">그룹채팅이름</string>
+    <string name="inputGroupName">그룹이름을입력하십시오</string>
+    <string name="changeGroupNotice">그룹공지사항수정</string>
+    <string name="inputGroupNotice">그룹알림을입력하십시오</string>
+    <string name="inviteFriend">친구를스캔하도록초대</string>
+    <string name="copyUrl">사본공유링크클릭</string>
+    <string name="inputContent">전송내용을비워둘수없습니다</string>
+    <string name="moreMember">그룹회원더보기</string>
+    <string name="redLog">빨간봉투레코드</string>
+    <string name="copy_success">성공적으로복사</string>
+    <string name="copy_fail">복사실패</string>
+    <string name="skip">건너뛰기</string>
+    <string name="remberNotice">니모닉단어를안전한곳에복사하여네트워크에저장하지마십시오</string>
+    <string name="backupRemeber">지금니모닉백업</string>
+    <string name="transferRemark">Transfer%sSIA,확인하십시오</string>
+    <string name="confirmReceive">영수증확인</string>
+    <string name="transferTime">전송시간:</string>
+    <string name="transferLog1"><![CDATA[전송이력보기>]]></string>
+    <string name="inviteCode">권장코드</string>
+    <string name="app">앱</string>
+    <string name="market">몰</string>
+    <string name="game">게임</string>
+    <string name="stayTuned">계속지켜봐주십시오</string>
+    <string name="remaining"><![CDATA[현재잔여:<fontcolor=\"#262F2F\">0</font>]]></string>
+    <string name="defaultTime">시간:</string>
+    <string name="defaultPrice"><![CDATA[가격:<fontcolor=\"#262F2F\">0 USDT</font>]]></string>
+    <string name="defaultMinAmount"><![CDATA[최소 구매:<fontcolor=\"#262F2F\"> 0 USDT</font>]]></string>
+    <string name="defaultMaxAmount"><![CDATA[가장 높은 구매:<fontcolor=\"#262F2F\"> 0 USDT</font>]]></string>
+    <string name="totalNum1"><![CDATA[총 라운드:<fontcolor=\"#262F2F\">0</font>]]></string>
+    <string name="placementInstructions">구매 지침보기</string>
+    <string name="siaProjectDes">SIA프로젝트설명보기</string>
+    <string name="payNum">비공개 게재 위치</string>
+    <string name="currentlyHave">현재소유:</string>
+    <string name="defaultSiaNum">≈0.00SIA</string>
+    <string name="pay">구매 확인</string>
+    <string name="inputPayNum">구매 수량을 입력하십시오</string>
+    <string name="privatePlacementLog">구매 기록</string>
+    <string name="privatePlacementDescription">구매 지침</string>
+    <string name="valuationMethod">가격책정방법</string>
+    <string name="unit">단위</string>
+    <string name="invitationDescription">초대보너스설명</string>
+    <string name="calculationDateDescription">계산날짜설명</string>
+    <string name="refundCancellationDes">환불및취소지침</string>
+    <string name="statementOfResponsibility">책임선언문</string>
+    <string name="siaProjectDesTitle">SIA프로젝트설명</string>
+    <string name="totalIssued">발급총계</string>
+    <string name="privatePrice">현재 구매 가격</string>
+    <string name="applicationDirection">응용프로그램방향</string>
+    <string name="contractType">계약유형</string>
+    <string name="amountPaid">발행된금액</string>
+    <string name="community">커뮤니티</string>
+    <string name="whitePaper">백서</string>
+    <string name="lockDescription">잠금설명</string>
+    <string name="placementNum">구매 수량</string>
+    <string name="lockProfit">재정 수입</string>
+    <string name="privatePlacementLockUp">구매</string>
+    <string name="airdropLock">에어 드롭 보상</string>
+    <string name="defaultFan">0명의팔로워</string>
+    <string name="defaultAttention">0주의</string>
+    <string name="profitLog">이익레코드</string>
+    <string name="chooseLockTime">재무주기를 선택하십시오</string>
+    <string name="inputLockNum">SIA 번호를 입력하십시오</string>
+    <string name="threeMonth">3개월</string>
+    <string name="defaultProfitRatio">수율:s%</string>
+    <string name="estimatedTotalProfit">예상총수익:s%</string>
+    <string name="locked">재무 관리 시작</string>
+    <string name="lockLog">역사적 기록</string>
+    <string name="profitNum">이익금액</string>
+    <string name="status">상태</string>
+    <string name="submitted">제출</string>
+    <string name="arrived">도착</string>
+    <string name="failed">실패</string>
+    <string name="releaseRecord">릴리스레코드</string>
+    <string name="defaultReleased">0.00보류릴리스</string>
+    <string name="airdropRecord">에어드롭레코드</string>
+    <string name="redEnvelopeInvitation">빨간봉투초대</string>
+    <string name="intoEnvelope">돈을빨간봉투에꽂기</string>
+    <string name="description">설명</string>
+    <string name="notice1">1.빨간봉투를WeChat과공유할수있습니다</string>
+    <string name="notice2">2.빨간봉투를받으려면휴대폰번호를채워야합니다</string>
+    <string name="sendSuccess">성공적으로전송</string>
+    <string name="copyShare">공유할링크복사</string>
+    <string name="saveFail">저장실패</string>
+    <string name="saveSuccess">성공적으로저장되었습니다</string>
+    <string name="currency">통화</string>
+    <string name="price">가격</string>
+    <string name="upDown">24H상승및하강</string>
+    <string name="checkNotice">퍼즐 검증을 완료하려면 버튼을 누른 상태에서 오른쪽으로 미십시오</string>
+    <string name="checkTitle">확인</string>
+    <string name="checkError">확인 실패</string>
+    <string name="defaultFans">0 팬</string>
+    <string name="defaultFollow">0 팔로우</string>
+    <string name="direction">방향</string>
+    <string name="wallet">월렛</string>
+    <string name="defaultUsdt">≈ 0.00 USDT</string>
+    <string name="sendNotice">현재 수집되지 않은 빨간 봉투가 있으며 모든 봉투를받은 후 다시 초대됩니다.</string>
+    <string name="searchNotice">검색하려면 휴대폰 번호를 입력하십시오</string>
+    <string name="inviteCode1">초대 코드:</string>
+    <string name="involveQuantity">관련된수</string>
+    <string name="releaseQuantity">방출량</string>
+    <string name="manner">길</string>
+    <string name="haveAccount"><![CDATA[기존 계정 <font color = \"#3D80CE\"> 로그인 </font>]]></string>
+    <string name="bind">바인드</string>
+    <string name="copy">복사</string>
+    <string name="detail">세부 사항</string>
+    <string name="notice3">3.블록 체인 빨간 봉투를 보내려면 노드 확인이 필요합니다. 빨간 봉투를 잡고 자산이 도착할 때까지 기다려주십시오.</string>
+    <string name="notice4">블록 체인 빨간 봉투를 보내려면 노드 확인이 필요합니다. 빨간 봉투를 잡고 자산이 도착할 때까지 기다려주십시오.</string>
+    <string name="bindPhone">전화 바인딩</string>
+    <string name="bindEmail">사서함 바인딩</string>
+    <string name="sia">SIA</string>
+    <string name="transferNotice">광부 수수료는 ETH로 청구되며, 계좌 이체를 위해서는 계좌에 0.001 ETH 이상의 잔액이 있어야합니다. 실제 광부 수수료는 전송 세부 정보 페이지의 금액을 기준으로 청구됩니다 (약 0.00005ETH ~ 0.0005ETH)
+</string>
+    <string name="exchange">兑换</string>
+    <string name="exchangeRecord">兑换记录</string>
+    <string name="chooseAssets">选择资产</string>
+    <string name="exchangeNumber">兑换数量</string>
+    <string name="defaultAvailable">可用余额: %1$s %2$s ≈ %3$s CNY</string>
+    <string name="buy">去购买</string>
+    <string name="inputMarketId">请输入联盟商城的用户ID</string>
+    <string name="getId">去获取</string>
+    <string name="inputExchangeNumber">请输入兑换数量</string>
+</resources>
+

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_main">Shopinvesta</string>
+    <string name="action_settings">Settings </string>
+    <string name="cancel">Cancel </string>
+    <string name="confirm">OK</string>
+    <string name="sure">confirm </string>
+    <string name="shuzi_zimu">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="bottom_index">Home </string>
+    <string name="bottom_chat">Chat</string>
+    <string name="bottom_heyue">Market</string>
+    <string name="bottom_otc">Information</string>
+    <string name="mine">My</string>
+    <!-- page view -->
+    <string name="page_view_emtpy">No data, click refresh </string>
+    <string name="page_view_network_error_hint">Network request failed\nPlease click retry</string>
+
+
+    <!--Login-->
+    <string name="please_input_tuijian_code">Please enter the recommendation code </string>
+    <string name="please_input_pass_code">Please enter the login password </string>
+    <string name="please_input_pass_code_again">Please enter the login password again</string>
+    <string name="please_input_jiaoyi_code">Please enter the transaction password </string>
+    <string name="please_input_jiaoyi_code_again">Please enter the transaction password again</string>
+    <string name="login_account_tip2">Mobile number/email </string>
+    <string name="forget_pass">Forgot your password?</string>
+    <string name="alreda_account">Existing account?</string>
+    <string name="login_password">Login password </string>
+    <string name="code_regisger">Register now</string>
+
+
+    <!--Registration-->
+    <string name="regist_account_phone_code">Verification code </string>
+    <string name="regist_account_phone_code_send">Send</string>
+    <string name="regist_account_email">Email registration </string>
+
+    <!--Retrieve password -->
+    <string name="reset_passwored">Set password </string>
+    <string name="reset_passwored_again">Enter the password again</string>
+
+
+    <!--Home aaa-->
+
+
+    <!--quote bbb-->
+
+
+    <!--chat ccc-->
+    <string name="app_name">SealTalk</string>
+    <string name="seal_login_text_login">Login </string>
+    <string name="seal_login_phone_number">Phone number </string>
+
+    <string name="seal_login_toast_passwords_invalid">Password must be 6-20 characters, case sensitive</string>
+    <string name="seal_login_toast_passwords_do_not_match">The confirmation password filled in is inconsistent with the new password</string>
+
+
+    <string name="seal_conversation_title_defult">Chat</string>
+
+    <!-- Chat details related -->
+    <!-- Private chat details -->
+    <string name="profile_search_message">View chat history</string>
+    <string name="profile_message_notice">Message do not disturb </string>
+    <string name="profile_set_top">Session top </string>
+    <string name="profile_clean_message">Clear chat history</string>
+    <string name="profile_screen_shot_notification">Screenshot notification </string>
+    <string name="profile_screen_shot_notification_tips">After opening, take a screenshot in the conversation, all members are notified </string>
+    <string name="profile_clean_timing">Timed cleanup group message </string>
+    <string name="profile_clean_timing_tips">After setting the timed cleanup, the system will periodically clean up the group message before the specified time. The cleaned up message cannot be recovered. Please set it carefully </string>
+
+    <!-- Group details -->
+    <string name="profile_all_group_member">All group members </string>
+    <string name="profile_group_portrait">Group avatar </string>
+    <string name="profile_group_name">Group name </string>
+    <string name="profile_group_notice">Group announcement </string>
+
+    in the group
+
+    <!--stAccount--><![CDATA[
+
+
+
+
+
+
+
+
+
+
+
+
+
+    >
+
+    ]]><!--gender-->
+
+
+    <string name="profile_group_qrcode">group QR code </string>
+    <string name="profile_group_manager">group management</string>
+
+    <!--clean_time_group-->
+    <string name="seal_dialog_select_clean_time_36">Clear the message 36 hours ago </string>
+    <string name="seal_dialog_select_clean_time_3">Clear 3 days ago message </string>
+    <string name="seal_dialog_select_clean_time_7">Clear the message 7 days ago </string>
+    <string name="seal_set_clean_time_fail">Setting failed</string>
+    <string name="seal_set_clean_time_state_not">Please set the time </string>
+    <string name="seal_set_clean_time_not_owner_tip">Only the group owner can set </string>
+    <!--group-->
+
+    <string name="seal_grant_permissions">You need to open the permissions in the settings </string>
+
+    <!--Information ddd-->
+
+
+    <!--My eee-->
+    <string name="person_main_page">Profile</string>
+    <string name="id">ID:</string>
+    <string name="id1">ID</string>
+
+
+    <!--Complete the information -->
+
+
+    <!--Button-->
+    <string name="but_submit">submit </string>
+    <string name="but_sure">OK</string>
+    <string name="but_apply">application </string>
+    <string name="but_back">return </string>
+
+
+    <string name="code_phone_tip">SMS verification code is successful </string>
+
+    <string name="set_new_pass">Set new password</string>
+    <string name="sure_new_pass">Confirm new password</string>
+    <string name="set_new_pass_tip">Please enter 6-16 digits + letter combination </string>
+    <string name="sure_new_pass_tip">Please enter a new password again</string>
+    <string name="must_has_shuzi">must contain numbers</string>
+    <string name="must_has_zimu">must contain letters </string>
+
+    <!--User Information-->
+
+
+    <!--Authentication-->
+    <string name="id_card_check2">real name authentication </string>
+
+
+    <!--Modify the transaction password -->
+    <string name="msg_code_again">Reacquire </string>
+
+    <!--Bundle bank card -->
+
+
+    <!--Transaction history-->
+
+    <!--Loan Record-->
+    <!--borrowing information-->
+    <!--Repayment record-->
+    <!--Repayment details-->
+
+    <!--Application quota-->
+
+
+    <!--My quota-->
+
+    <!--Add a co-borrower-->
+
+
+    <string name="toast_login_again">The login user identity expires and needs to log in again</string>
+    <string name="toast_no_active">This account has not been activated, please activate new account or select old account </string>
+
+
+    <!--I want to borrow -->
+
+    <!--Add payee-->
+
+
+    <!-- About the currency friend -->
+    <string name="share_text">Share registration </string>
+    <string name="welcome_pager">Welcome page</string>
+    <!-- Sign the contract -->
+
+
+    <string name="net_error">Network connection failed, please check the network status </string>
+
+
+    F
+
+    <!-- Import invoice -->
+
+    <!--Contract Information-->
+
+    <!--Invoice Information-->
+
+
+    <!-- Registration -->
+    <string name="test_code">verification code </string>
+    <string name="next">Next </string>
+    <string name="please_input_message_code">Enter the verification code </string>
+
+
+    <string name="phoneNumber">Phone number</string>
+    <string name="sign_up_email_hint">Email</string>
+    <string name="inputVerificationCode">Enter the verification code </string>
+    <string name="number">Quantity</string>
+    <string name="time">Time </string>
+    <string name="coinName">Name</string>
+    <string name="search">Search</string>
+
+    <string name="exit">logout </string>
+    <string name="inputPhone">Please enter the phone number </string>
+    <string name="inputEmail">Please enter the email address </string>
+    <string name="changePhone"> modify the phone </string>
+    <string name="inputPhoneNum">Please enter your mobile number </string>
+    <string name="aboutUS">About us</string>
+    <string name="changeEmail"> modify the mailbox </string>
+    <string name="loginPass">login password </string>
+    <string name="tradePass">transaction password </string>
+    <string name="verificationCode">verification code </string>
+    <string name="sendVerificationCode">Get the verification code </string>
+    <string name="inputOldPass">Please enter the original password </string>
+    <string name="inputNewPass">Please enter a new password</string>
+    <string name="totalAmount2">total amount </string>
+    <string name="walletAddress">wallet address: </string>
+
+    <string name="inputEmailCode">Please enter the mailbox verification code </string>
+    <string name="_24HVolume">24H volume </string>
+
+    <string name="change">Modify </string>
+
+    <string name="phoneRegex">^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])| ([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9 ]{8}$</string>
+    <string name="inputRightPhone">Please enter the correct phone number </string>
+
+
+    <!-- Picture browsing -->
+    <string name="finish">complete </string>
+
+    <!--Push information-->
+    <string name="loading_tip">--</string>
+    <string name="beenApprove">Your authentication has been approved </string>
+    <string name="registerUser">Register</string>
+    <string name="inputEmailAccount">Please enter your email account </string>
+    <string name="recordNotice">Please Click Mnemonics Phrase in the Correct Order to Confirm That Your Backup Mnemonics Phrase is Correct</string>
+    <string name="loginPassErrorNotice"> login password is inconsistent </string>
+    <string name="tradePassErrorNotice"> transaction password is inconsistent </string>
+    <string name="inputRigthEmail">Please enter the correct mailbox number </string>
+    <string name="lastChat">Recent chat </string>
+    <string name="myAttention">My concern</string>
+    <string name="myGroup">My group</string>
+    <string name="recentlyChat">Recent chat</string>
+    <string name="watchList"> watch list </string>
+    <string name="joinedGroup"> joined group </string>
+    <string name="chat">private chat</string>
+    <string name="favorite">Follow </string>
+    <string name="beenFavorite">has been concerned </string>
+    <string name="addGroup">Join group chat</string>
+    <string name="groupNum">The current group chats: 0 people </string>
+    <string name="groupId">group chat ID</string>
+    <string name="copy1">Click to copy</string>
+    <string name="userBalance">Available balance: %s SIA</string>
+    <string name="userBalance1">Available balance: %s SIA ≈ %w CNY</string>
+    <string name="redMoneyDes">Congratulations for making a fortune, good luck </string>
+    <string name="defaultRed"><![CDATA[0.00 <font><small>SIA</small></font>]]></string>
+    <string name="transferInternal">internal transfer </string>
+    <string name="recived">receiver </string>
+    <string name="transferNumber"> transfer amount </string>
+    <string name="defaultFee">Handling fee: %s SIA</string>
+    <string name="transferDes">Transfer instructions: </string>
+    <string name="transfer">Transfer </string>
+    <string name="remainingRed">%s red packets, %w remaining </string>
+    <string name="remainingRed1">%s red packets, has been grabbed </string>
+    <string name="reRed">%s red envelope</string>
+    <string name="transferLog">Transfer record </string>
+    <string name="rewardLog">My bill</string>
+    <string name="inviteShare">Promote sharing </string>
+    <string name="systemNotice">System announcement </string>
+    <string name="setting">Settings </string>
+    <string name="aboutUs">About us</string>
+    <string name="contactService">Contact customer service </string>
+
+    <string name="resume">continue </string>
+
+    <string name="failure">authorization failed</string>
+
+    <string name="title_dialog">tip </string>
+    <string name="message_permission_rationale"> Grant the following permissions to the program: \n\n%1$s</string>
+    <string name="message_permission_always_failed">Please go to the phone\'s settings interface to authorize the following permissions: \n\n%1$s</string>
+
+    <string name="message_install_failed">Install the app needs to open the unknown source permission, please go to the settings to open the permissions </string>
+
+    <string name="personInfo">Personal Homepage </string>
+    <string name="edit">Edit </string>
+    <string name="fans">Fans</string>
+    <string name="concerned">has been concerned </string>
+    <string name="notConcerned">not concerned </string>
+    <string name="avatar">Avatar </string>
+    <string name="nickName">Nickname </string>
+    <string name="account_information">Account Information</string>
+    <string name="Camera">Take a picture </string>
+    <string name="chooseImage">Album selection </string>
+    <string name="inputNickName">Please enter a nickname </string>
+    <string name="changeNickName"> modify the nickname </string>
+    <string name="recivedId">ID</string>
+    <string name="rewardType">Reward method </string>
+    <string name="rewardNumber">Reward amount </string>
+    <string name="news">Information</string>
+    <string name="newsDetail">Information details </string>
+    <string name="systemDetail">System Details </string>
+    <string name="announcement">Announcement </string>
+    <string name="announcementContent">Announcement content </string>
+    <string name="redEnvelopeRecord">Red envelope record </string>
+    <string name="email">Email account </string>
+    <string name="language">System language</string>
+    <string name="currencyUnit">Currency unit </string>
+    <string name="systemSetting">System settings </string>
+    <string name="inputOldPhoneNum">Please enter the original phone number </string>
+    <string name="noVerificationPhone">The original mobile phone number could not be verified?</string>
+    <string name="inputNewPhoneNum">Please enter a new phone number </string>
+    <string name="inputOldEmail">Please enter the original email account </string>
+    <string name="inputNewEmailNum">Please enter a new email account </string>
+    <string name="inputNewPassAgain">Please enter the new password again </string>
+    <string name="changeLoginPass"> modify the login password </string>
+    <string name="changeTradePass"> modify the transaction password </string>
+    <string name="noVerificationEmail">The original mailbox could not be verified?</string>
+    <string name="_24HVolumeGlobal">Global trading volume (24h): </string>
+    <string name="outline">profile </string>
+    <string name="publishTime">release time </string>
+    <string name="officialWebsite">official website</string>
+    <string name="leastTradeLog">Recent transaction record </string>
+    <string name="receipt">Receiving </string>
+    <string name="copyReveive">copy the payment address </string>
+    <string name="saveReceive">Save the receipt code </string>
+    <string name="currentBalance"> current balance: </string>
+    <string name="transferAmount"> transfer amount: </string>
+    <string name="minerFee">miner fee: </string>
+    <string name="remarks1">Remarks: </string>
+    <string name="inputReceiveAddress">Please enter the payee wallet address </string>
+    <string name="inputTransferAmount">Please enter the transfer amount </string>
+    <string name="optional">optional </string>
+    <string name="amount1">amount: </string>
+    <string name="receivedAddress">receipt address: </string>
+    <string name="payAddress">payment address: </string>
+    <string name="block">block: </string>
+    <string name="transferDetail">transfer details </string>
+    <string name="tradeOrderNum"> transaction number: </string>
+    <string name="inputPhoneEmail">Phone / Email</string>
+    <string name="inputAccountPass">Enter the account password </string>
+    <string name="sendRed">Red envelope </string>
+    <string name="redNum">Number of red packets </string>
+    <string name="inputRedAmount">Enter the total amount of red packets </string>
+    <string name="inputRedNumber">Enter the number of red packets</string>
+    <string name="totalNum">% of the group </string>
+    <string name="groupManager">Group management </string>
+    <string name="changeGroupInfo">Modify group data </string>
+    <string name="groupName">Group chat name </string>
+    <string name="inputGroupName">Please enter the group name </string>
+    <string name="changeGroupNotice">Modify group announcement </string>
+    <string name="inputGroupNotice">Please enter the group announcement </string>
+    <string name="inviteFriend">Invite friends to sweep </string>
+    <string name="copyUrl">Click on the copy share link</string>
+    <string name="inputContent">Send content cannot be empty</string>
+    <string name="moreMember">View more group members </string>
+    <string name="redLog">Red envelope record </string>
+    <string name="copy_success">Copy success</string>
+    <string name="copy_fail">Copy failed</string>
+    <string name="skip">Skip</string>
+    <string name="remberNotice">Please Write Down Your Mnemonics Phrase and Keep Them in a Safe Place, and Don\'t Save Them on the Internet</string>
+    <string name="backupRemeber">Back Up Your Mnemonic Phrase Now</string>
+    <string name="transferRemark">Transfer %s SIA, Please check</string>
+    <string name="confirmReceive">Confirm</string>
+    <string name="transferTime">Transfer Time:</string>
+    <string name="transferLog1"><![CDATA[View transfer history>]]></string>
+    <string name="inviteCode">Invite code</string>
+    <string name="app">App</string>
+    <string name="market">Market</string>
+    <string name="game">Game</string>
+    <string name="stayTuned">Stay Tuned</string>
+    <string name="defaultTime">Time:</string>
+    <string name="remaining"><![CDATA[Current remaining:<font color=\"#262F2F\"> 0</font>]]></string>
+    <string name="defaultPrice"><![CDATA[Price :<font color=\"#262F2F\"> 0 USDT</font>]]></string>
+    <string name="defaultMinAmount"><![CDATA[Minimum purchase:<font color=\"#262F2F\"> 0 USDT</font>]]></string>
+    <string name="defaultMaxAmount"><![CDATA[Highest purchase:<font color=\"#262F2F\"> 0 USDT</font>]]></string>
+    <string name="totalNum1"><![CDATA[Total round:<font color=\"#262F2F\"> 0 </font>]]></string>
+    <string name="placementInstructions">View purchase instructions</string>
+    <string name="siaProjectDes">View SIA project description</string>
+    <string name="payNum">Purchase quantity</string>
+    <string name="currentlyHave">Currently have:</string>
+    <string name="defaultSiaNum">≈0.00 SIA</string>
+    <string name="pay">Confirm purchase</string>
+    <string name="inputPayNum">Please enter the purchase quantity</string>
+    <string name="privatePlacementLog">Purchase Record</string>
+    <string name="privatePlacementDescription">Purchase instructions</string>
+    <string name="valuationMethod">Valuation method</string>
+    <string name="unit">Unit</string>
+    <string name="invitationDescription">Invitation Reward Description</string>
+    <string name="calculationDateDescription">Calculation date description</string>
+    <string name="refundCancellationDes">Refund and cancellation instructions</string>
+    <string name="statementOfResponsibility">Statement of responsibility</string>
+    <string name="siaProjectDesTitle">SIA project description</string>
+    <string name="totalIssued">Total issued</string>
+    <string name="privatePrice">Current purchase price</string>
+    <string name="applicationDirection">Application direction</string>
+    <string name="contractType">Contract type</string>
+    <string name="amountPaid">Amount paid</string>
+    <string name="community">Community</string>
+    <string name="whitePaper">White paper</string>
+    <string name="lockDescription">Lock description</string>
+    <string name="placementNum">Purchase quantity</string>
+    <string name="lockProfit">Financial income</string>
+    <string name="privatePlacementLockUp">Purchase</string>
+    <string name="airdropLock">Airdrop reward</string>
+    <string name="defaultFan">0 Fan</string>
+    <string name="defaultAttention">0 Attention</string>
+    <string name="profitLog">Revenue record</string>
+    <string name="chooseLockTime">Please select a financial cycle</string>
+    <string name="inputLockNum">Please enter the number of SIA</string>
+    <string name="threeMonth">3 months</string>
+    <string name="defaultProfitRatio">Rate of profit: s%</string>
+    <string name="estimatedTotalProfit">Estimated total revenue: s%</string>
+    <string name="locked">Start financial management</string>
+    <string name="lockLog">History record</string>
+    <string name="profitNum">Profit Number</string>
+    <string name="status">Status</string>
+    <string name="submitted">Submitted</string>
+    <string name="arrived">Arrived</string>
+    <string name="failed">Failed</string>
+    <string name="releaseRecord">Release record</string>
+    <string name="defaultReleased">0.00 待释放</string>
+    <string name="airdropRecord">Airdrop record</string>
+    <string name="redEnvelopeInvitation">Red package invitation</string>
+    <string name="intoEnvelope">Stuff money into a red envelope</string>
+    <string name="description">Description</string>
+    <string name="notice1">1.Red envelopes can be shared on WeChat</string>
+    <string name="notice2">2.To receive a red envelope, you must fill in a mobile phone number</string>
+    <string name="sendSuccess">Sent successfully</string>
+    <string name="copyShare">Copy link to share</string>
+    <string name="saveFail">Save Failed</string>
+    <string name="saveSuccess">Save Success</string>
+    <string name="currency">Currency</string>
+    <string name="price">Price</string>
+    <string name="upDown">24H Change</string>
+    <string name="checkNotice">Press and hold the button and slide to the right to complete the puzzle verification</string>
+    <string name="checkTitle">Verification</string>
+    <string name="checkError">Verification failed</string>
+    <string name="defaultFans">0 Fans</string>
+    <string name="defaultFollow">0 Follows</string>
+    <string name="direction">Direction</string>
+    <string name="wallet">Wallet</string>
+    <string name="defaultUsdt">≈ 0.00 USDT</string>
+    <string name="sendNotice">There are currently red envelopes that have not been collected, and you will be invited again after receiving all</string>
+    <string name="searchNotice">Please enter your mobile number to search</string>
+    <string name="inviteCode1">Invitation code:</string>
+    <string name="involveQuantity">Involve Quantity</string>
+    <string name="releaseQuantity">Release Quantity</string>
+    <string name="manner">Manner</string>
+    <string name="haveAccount"><![CDATA[Existing account <font color=\"#3D80CE\"> Login </font>]]></string>
+    <string name="bind">Bind</string>
+    <string name="copy">Copy</string>
+    <string name="detail">Detail</string>
+    <string name="notice3">3.Blockchain red envelope sending requires node confirmation, please be patient and wait for the assets to arrive after you grab the red envelope</string>
+    <string name="notice4">Blockchain red envelope sending requires node confirmation, please be patient and wait for the assets to arrive after you grab the red envelope</string>
+    <string name="bindPhone">Bind phone</string>
+    <string name="bindEmail">Bind email</string>
+    <string name="sia">SIA</string>
+    <string name="transferNotice">Miner fees are charged in ETH, and there must be a balance of more than 0.001 ETH in the account in order to transfer successfully. The actual miner fee is charged based on the amount on the transfer details page (about 0.00005ETH ~ 0.0005ETH)
+</string>
+    <string name="exchange">兑换</string>
+    <string name="exchangeRecord">兑换记录</string>
+    <string name="chooseAssets">选择资产</string>
+    <string name="exchangeNumber">兑换数量</string>
+    <string name="defaultAvailable">可用余额: %1$s %2$s ≈ %3$s CNY</string>
+    <string name="buy">去购买</string>
+    <string name="inputMarketId">请输入联盟商城的用户ID</string>
+    <string name="getId">去获取</string>
+    <string name="inputExchangeNumber">请输入兑换数量</string>
+
+</resources>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dp_25"
+        android:layout_height="@dimen/dp_45">
+
+        <LinearLayout
+            android:id="@+id/left_back_lay"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingRight="@dimen/dp_10">
+
+            <ImageView
+                android:id="@+id/back_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:gravity="center"
+                android:visibility="gone"
+                android:src="@drawable/back_arrow" />
+
+            <TextView
+                android:id="@+id/back_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/title_text"
+            style="@style/title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/dp_140"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:singleLine="true"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/right_lay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/dp_5"
+                android:gravity="right"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divide_hight"
+        android:background="@color/divide_line" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/currency"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_60"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/gray"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@string/price"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/gray"
+            android:layout_width="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@string/upDown"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/gray"
+            android:gravity="center_horizontal"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divide_hight"
+        android:background="@color/divide_line" />
+
+    <com.lr.sia.mywidget.view.PageView
+        android:id="@+id/page_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xBanner">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.github.jdsjlzx.recyclerview.LRecyclerView
+                android:id="@+id/mRefreshListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10" />
+        </LinearLayout>
+    </com.lr.sia.mywidget.view.PageView>
+</LinearLayout>
+

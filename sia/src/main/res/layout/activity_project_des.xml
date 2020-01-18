@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backImg"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:gravity="center"
+                android:padding="@dimen/dp_8"
+                android:src="@drawable/icon_back2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_8"
+                android:text="@string/siaProjectDesTitle"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_margin="@dimen/dp_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clTitle" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tvDes"
+            app:layout_constraintEnd_toStartOf="@id/ivIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivIcon" />
+
+        <TextView
+            android:id="@+id/tvDes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/ivIcon"
+            app:layout_constraintEnd_toStartOf="@id/ivIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:text="@string/totalIssued"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivIcon" />
+
+        <TextView
+            android:id="@+id/tvTotalIssued"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier4"
+            app:layout_constraintTop_toBottomOf="@id/ivIcon" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:text="@string/privatePrice"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView18" />
+
+        <TextView
+            android:id="@+id/tvPrivatePrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier4"
+            app:layout_constraintTop_toBottomOf="@id/textView18" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:text="@string/applicationDirection"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView19" />
+
+        <TextView
+            android:id="@+id/tvApplicationDirection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier4"
+            app:layout_constraintTop_toBottomOf="@id/textView19" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:text="@string/contractType"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView20" />
+
+        <TextView
+            android:id="@+id/tvContractType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier4"
+            app:layout_constraintTop_toBottomOf="@id/textView20" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:text="@string/amountPaid"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView21" />
+
+        <TextView
+            android:id="@+id/tvAmountPaid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier4"
+            app:layout_constraintTop_toBottomOf="@id/textView21" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:text="@string/community"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView22" />
+
+        <TextView
+            android:id="@+id/tvCommunity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier4"
+            app:layout_constraintTop_toBottomOf="@id/textView22" />
+
+        <TextView
+            android:id="@+id/tvWhitePaper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/seal_ic_rp_arrow"
+            android:padding="@dimen/dp_8"
+            android:text="@string/whitePaper"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView23" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:padding="@dimen/dp_8"
+            android:text="@string/lockDescription"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWhitePaper" />
+
+        <TextView
+            android:id="@+id/tvLockDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView24" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="textView18,textView19,textView20,textView21,textView22,textView23" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
