@@ -251,22 +251,6 @@ public class ResetPayPassButActivity extends BasicActivity implements RequestVie
 
     }
 
-
-    /**
-     * 获取用户信息
-     */
-    private void getUserInfoAction() {
-        mRequestTag = MethodUrl.USER_INFO;
-        Map<String, Object> map = new HashMap<>();
-        if (UtilTools.empty(MbsConstans.ACCESS_TOKEN)) {
-            MbsConstans.ACCESS_TOKEN = SPUtils.get(ResetPayPassButActivity.this, MbsConstans.SharedInfoConstans.ACCESS_TOKEN, "").toString();
-        }
-        map.put("token", MbsConstans.ACCESS_TOKEN);
-        Map<String, String> mHeaderMap = new HashMap<String, String>();
-        mRequestPresenterImp.requestPostToMap(mHeaderMap, MethodUrl.USER_INFO, map);
-    }
-
-
     private void submitAction() {
         mRequestTag = MethodUrl.UPDATE_PAYCODE;
 
@@ -384,27 +368,6 @@ public class ResetPayPassButActivity extends BasicActivity implements RequestVie
 
                 }
                 btSure.setEnabled(true);
-                break;
-            case MethodUrl.USER_INFO:
-                switch (tData.get("code") + "") {
-                    case "0": //请求成功
-                        MbsConstans.USER_MAP = (Map<String, Object>) tData.get("data");
-                        if (!UtilTools.empty(MbsConstans.USER_MAP)) {
-                            SPUtils.put(ResetPayPassButActivity.this, MbsConstans.SharedInfoConstans.LOGIN_INFO, JSONUtil.getInstance().objectToJson(MbsConstans.USER_MAP));
-                        }
-                        break;
-                    case "-1": //请求失败
-                        showToastMsg(tData.get("msg") + "");
-                        break;
-
-                    case "1": //token过期
-                        closeAllActivity();
-                        intent = new Intent(ResetPayPassButActivity.this, LoginActivity1.class);
-                        startActivity(intent);
-
-                        break;
-
-                }
                 break;
             case MethodUrl.REFRESH_TOKEN://获取refreshToken返回结果
                 MbsConstans.REFRESH_TOKEN = tData.get("refresh_token") + "";

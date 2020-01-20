@@ -37,6 +37,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.flyco.dialog.utils.CornerUtils;
 import com.lr.sia.R;
+import com.lr.sia.ui.moudle3.activity.UserInfoActivity1;
 import com.lr.sia.utils.imageload.GlideUtils;
 import com.lr.sia.utils.tool.UtilTools;
 
@@ -335,9 +336,6 @@ public class ConversationFragment extends Fragment implements
             messageViewModel.messageRemovedLiveData().observeForever(messageRemovedLiveDataObserver);
             messageViewModel.mediaUpdateLiveData().observeForever(mediaUploadedLiveDataObserver);
 
-
-
-
             userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
             userViewModel.userInfoLiveData().observeForever(userInfoUpdateLiveDataObserver);
         }
@@ -540,7 +538,7 @@ public class ConversationFragment extends Fragment implements
         if(userInfo.name.equals("admin") || userInfo.displayName.equals("系统管理员")){
             return;
         }
-        Intent intent = new Intent(getActivity(), UserInfoActivity.class);
+        Intent intent = new Intent(getActivity(), UserInfoActivity1.class);
         intent.putExtra("userInfo", userInfo);
         startActivity(intent);
     }

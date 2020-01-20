@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.lr.sia.R;
+import com.lr.sia.ui.moudle3.activity.TransferMoneyActivity1;
 import com.lr.sia.utils.tool.LogUtilDebug;
+import com.lr.sia.utils.tool.SPUtils;
 
 import cn.wildfire.chat.kit.annotation.ExtContextMenuItem;
 import cn.wildfire.chat.kit.conversation.ext.core.ConversationExt;
@@ -23,27 +25,16 @@ public class TransinfoExt extends ConversationExt {
      */
     @ExtContextMenuItem(title = "转账")
     public void transInfo(View containerView, Conversation conversation) {
-        LogUtilDebug.i("show","会话类型:"+conversation.type);
-
-/*
-        TypingMessageContent content = new TypingMessageContent(TypingMessageContent.TYPING_RED);
-        messageViewModel.sendMessage(conversation, content);*/
-
-//
-//        Intent intent = new Intent(activity, TransferMoneyActivity.class);
-//        if (conversation.type == Conversation.ConversationType.Single){
-//            intent.putExtra("type","1");
-//            intent.putExtra("id",conversation.target);
-//            startActivityForResult(intent, 101);
-//        }else {
-//            Toast.makeText(activity,"群聊不支持转账功能",Toast.LENGTH_LONG).show();
-//        }
+        Intent intent = new Intent(activity, TransferMoneyActivity1.class);
+        intent.putExtra("tarid", conversation.target);
+        intent.putExtra("type", "1");
+        intent.putExtra("id", (String) SPUtils.get("friendId", ""));
+        activity.startActivity(intent);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-
             Bundle bundle = data.getExtras();
             if (bundle != null){
                 String cid = bundle.get("red_id")+"";
@@ -55,9 +46,6 @@ public class TransinfoExt extends ConversationExt {
                 messageContent.redPackType = "2";
                 messageViewModel.sendRedMessage(conversation,messageContent);
             }
-
-
-
         }
     }
 

@@ -11,11 +11,8 @@ import android.text.TextUtils;
 import androidx.multidex.MultiDexApplication;
 
 import com.lr.sia.Config;
-import com.lr.sia.ui.moudle3.location.viewholder.LocationMessageContentViewHolder;
 import com.lr.sia.utils.RealmUtils;
 import com.lr.sia.utils.tool.AppContextUtil;
-
-import com.lr.sia.BuildConfig;
 import com.tencent.bugly.Bugly;
 
 import java.io.BufferedReader;
@@ -26,6 +23,7 @@ import java.io.IOException;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 import cn.wildfire.chat.kit.WfcUIKit;
 import cn.wildfire.chat.kit.conversation.message.viewholder.MessageViewHolderManager;
+import cn.wildfire.chat.kit.location.viewholder.LocationMessageContentViewHolder;
 
 public class BasicApplication extends MultiDexApplication {
     private static Context mContext;

@@ -12,14 +12,14 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.jaeger.library.StatusBarUtil;
 import com.lr.sia.R;
-
 import com.lr.sia.api.MethodUrl;
 import com.lr.sia.basic.MbsConstans;
 import com.lr.sia.manage.ActivityManager;
-
 import com.lr.sia.mvp.presenter.RequestPresenterImp;
 import com.lr.sia.mvp.view.RequestView;
 import com.lr.sia.ui.moudle.activity.LoginActivity1;
+import com.lr.sia.ui.moudle3.activity.GroupTeamActivity;
+import com.lr.sia.ui.moudle3.activity.UserInfoActivity1;
 import com.lr.sia.utils.tool.LogUtilDebug;
 import com.lr.sia.utils.tool.SPUtils;
 import com.lr.sia.utils.tool.UtilTools;
@@ -48,13 +48,35 @@ public class ConversationActivity extends WfcBaseActivity implements RequestView
         @Override
         public void run() {
             // 统计聊天时长
-            tongjiChatTimeAction();
+//            tongjiChatTimeAction();
             handler2.postDelayed(this, MbsConstans.SECOND_TIME_30);
         }
     };
 
+    public static Intent buildConversationIntent(Context context, Conversation.ConversationType type, String target, int line) {
+        return buildConversationIntent(context, type, target, line, -1);
+    }
+
+    public static Intent buildConversationIntent(Context context, Conversation.ConversationType type, String target, int line, long toFocusMessageId) {
+        Conversation conversation = new Conversation(type, target, line);
+        return buildConversationIntent(context, conversation, null, toFocusMessageId);
+    }
+
+    public static Intent buildConversationIntent(Context context, Conversation conversation, String channelPrivateChatUser, long toFocusMessageId) {
+        Intent intent = new Intent(context, ConversationActivity.class);
+        intent.putExtra("conversation", conversation);
+        intent.putExtra("toFocusMessageId", toFocusMessageId);
+        intent.putExtra("channelPrivateChatUser", channelPrivateChatUser);
+        return intent;
+    }
+
+    public static Intent buildConversationIntent(Context context, Conversation.ConversationType type, String target, int line, String channelPrivateChatUser) {
+        Conversation conversation = new Conversation(type, target, line);
+        return buildConversationIntent(context, conversation, null, -1);
+    }
+
     private void tongjiChatTimeAction() {
-        RequestPresenterImp mRequestPresenterImp = new RequestPresenterImp(this,this);
+        RequestPresenterImp mRequestPresenterImp = new RequestPresenterImp(this, this);
         Map<String, Object> map = new HashMap<>();
         if (UtilTools.empty(MbsConstans.ACCESS_TOKEN)) {
             MbsConstans.ACCESS_TOKEN = SPUtils.get(this, MbsConstans.SharedInfoConstans.ACCESS_TOKEN, "").toString();
@@ -64,21 +86,29 @@ public class ConversationActivity extends WfcBaseActivity implements RequestView
         mRequestPresenterImp.requestPostToMap(mHeaderMap, MethodUrl.CHAT_TIME_LONG, map);
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        handler2.post(cnyRunnable);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (handler2 != null && cnyRunnable != null) {
-            handler2.removeCallbacks(cnyRunnable);
+    private void exchangeId(String userId) {
+        RequestPresenterImp mRequestPresenterImp = new RequestPresenterImp(this, this);
+        Map<String, Object> map = new HashMap<>();
+        if (UtilTools.empty(MbsConstans.ACCESS_TOKEN)) {
+            MbsConstans.ACCESS_TOKEN = SPUtils.get(MbsConstans.SharedInfoConstans.ACCESS_TOKEN, "").toString();
         }
+        map.put("token", MbsConstans.ACCESS_TOKEN);
+        map.put("rc_id", userId);
+        mRequestPresenterImp.requestPostToMap(MethodUrl.CHAT_QUERY_ID, map);
     }
 
+    public ConversationFragment getConversationFragment() {
+        return conversationFragment;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_conversation_info) {
+            showConversationInfo();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected int contentLayout() {
@@ -86,9 +116,9 @@ public class ConversationActivity extends WfcBaseActivity implements RequestView
         return R.layout.fragment_container_activity;
     }
 
-    private void setConversationBackground() {
-        // you can setup your conversation background here
-        // getWindow().setBackgroundDrawableResource(R.mipmap.splash);
+    @Override
+    protected int menu() {
+        return R.menu.conversation;
     }
 
     @Override
@@ -112,27 +142,32 @@ public class ConversationActivity extends WfcBaseActivity implements RequestView
     }
 
     @Override
-    protected int menu() {
-        return R.menu.conversation;
-    }
-
-    public ConversationFragment getConversationFragment() {
-        return conversationFragment;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_conversation_info) {
-            showConversationInfo();
-            return true;
+    protected void onPause() {
+        super.onPause();
+        if (handler2 != null && cnyRunnable != null) {
+            handler2.removeCallbacks(cnyRunnable);
         }
-        return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (!conversationFragment.onBackPressed()) {
-            super.onBackPressed();
+    private void setConversationBackground() {
+        // you can setup your conversation background here
+        // getWindow().setBackgroundDrawableResource(R.mipmap.splash);
+    }
+
+    private void init() {
+
+        Intent intent = getIntent();
+        conversation = intent.getParcelableExtra("conversation");
+        String conversationTitle = intent.getStringExtra("conversationTitle");
+        long initialFocusedMessageId = intent.getLongExtra("toFocusMessageId", -1);
+        if (conversation == null) {
+            finish();
+        }
+        conversationFragment.setupConversation(conversation, conversationTitle, initialFocusedMessageId, null);
+        if (conversation.type == Conversation.ConversationType.Single) {
+            exchangeId(conversation.target);
+        }else{
+
         }
     }
 
@@ -140,6 +175,13 @@ public class ConversationActivity extends WfcBaseActivity implements RequestView
         Intent intent = new Intent(this, ConversationInfoActivity.class);
         intent.putExtra("conversationInfo", ChatManager.Instance().getConversation(conversation));
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!conversationFragment.onBackPressed()) {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -151,40 +193,10 @@ public class ConversationActivity extends WfcBaseActivity implements RequestView
         conversationFragment.setupConversation(conversation, null, initialFocusedMessageId, channelPrivateChatUser);
     }
 
-
-    private void init() {
-
-        Intent intent = getIntent();
-        conversation = intent.getParcelableExtra("conversation");
-        String conversationTitle = intent.getStringExtra("conversationTitle");
-        long initialFocusedMessageId = intent.getLongExtra("toFocusMessageId", -1);
-        if (conversation == null) {
-            finish();
-        }
-
-        conversationFragment.setupConversation(conversation, conversationTitle, initialFocusedMessageId, null);
-    }
-
-    public static Intent buildConversationIntent(Context context, Conversation.ConversationType type, String target, int line) {
-        return buildConversationIntent(context, type, target, line, -1);
-    }
-
-    public static Intent buildConversationIntent(Context context, Conversation.ConversationType type, String target, int line, long toFocusMessageId) {
-        Conversation conversation = new Conversation(type, target, line);
-        return buildConversationIntent(context, conversation, null, toFocusMessageId);
-    }
-
-    public static Intent buildConversationIntent(Context context, Conversation.ConversationType type, String target, int line, String channelPrivateChatUser) {
-        Conversation conversation = new Conversation(type, target, line);
-        return buildConversationIntent(context, conversation, null, -1);
-    }
-
-    public static Intent buildConversationIntent(Context context, Conversation conversation, String channelPrivateChatUser, long toFocusMessageId) {
-        Intent intent = new Intent(context, ConversationActivity.class);
-        intent.putExtra("conversation", conversation);
-        intent.putExtra("toFocusMessageId", toFocusMessageId);
-        intent.putExtra("channelPrivateChatUser", channelPrivateChatUser);
-        return intent;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handler2.post(cnyRunnable);
     }
 
     @Override
@@ -199,7 +211,7 @@ public class ConversationActivity extends WfcBaseActivity implements RequestView
 
     @Override
     public void loadDataSuccess(Map<String, Object> tData, String mType) {
-        LogUtilDebug.i("show","统计聊天时长成功");
+        LogUtilDebug.i("show", "统计聊天时长成功");
         switch (mType) {
             case MethodUrl.CHAT_TIME_LONG:
                 switch (tData.get("code") + "") {
@@ -208,7 +220,6 @@ public class ConversationActivity extends WfcBaseActivity implements RequestView
                     case "-1": //请求失败
                         //showToastMsg(tData.get("msg") + "");
                         break;
-
                     case "1": //token过期
                         ActivityManager activityManager = ActivityManager.getInstance();
                         activityManager.close();
@@ -216,9 +227,30 @@ public class ConversationActivity extends WfcBaseActivity implements RequestView
                         Intent intent = new Intent(this, LoginActivity1.class);
                         startActivity(intent);
                         break;
+                        default:
                 }
                 break;
-
+            case MethodUrl.CHAT_QUERY_ID:
+                switch (tData.get("code") + "") {
+                    case "1": //请求成功
+                        if (!UtilTools.empty(tData.get("data") + "")) {
+                            String id = tData.get("data") + "";
+                            SPUtils.put(ConversationActivity.this, "friendId", id);
+                        }
+                        break;
+                    case "0": //请求失败
+                        break;
+                    case "-1": //token过期
+                        ActivityManager activityManager = ActivityManager.getInstance();
+                        activityManager.close();
+                        Intent intent = new Intent(this, LoginActivity1.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                    default:
+                }
+                break;
+            default:
         }
     }
 

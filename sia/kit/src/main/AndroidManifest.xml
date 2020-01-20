@@ -41,7 +41,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
-        android:name="com.lr.best.basic.BasicApplication"
+        android:name="com.lr.sia.basic.BasicApplication"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"

@@ -670,35 +670,11 @@ public class MainActivity extends BasicActivity {
                 String result = tData.get("result") + "";
                 SPUtils.put(MainActivity.this, MbsConstans.SharedInfoConstans.NAME_CODE_DATA, result);
                 break;
-            case MethodUrl.USER_INFO://用户信息 //{auth=1, firm_kind=0, head_pic=default, name=刘英超, tel=151****3298, idno=4107****3616, cmpl_info=0}
-                switch (tData.get("code") + "") {
-                    case "0": //请求成功
-                        MbsConstans.USER_MAP = (Map<String, Object>) tData.get("data");
-                        if (!UtilTools.empty(MbsConstans.USER_MAP)) {
-                            SPUtils.put(MainActivity.this, MbsConstans.SharedInfoConstans.LOGIN_INFO, JSONUtil.getInstance().objectToJson(MbsConstans.USER_MAP));
-                        }
-                        break;
-                    case "-1": //请求失败
-                        showToastMsg(tData.get("msg") + "");
-                        break;
-
-                    case "1": //token过期
-                        closeAllActivity();
-                        Intent intent = new Intent(MainActivity.this, LoginActivity1.class);
-                        startActivity(intent);
-                        break;
-                    default:
-                }
-                //showUpdateDialog();
-                break;
             case MethodUrl.REFRESH_TOKEN://获取refreshToken返回结果
                 MbsConstans.REFRESH_TOKEN = tData.get("refresh_token") + "";
                 mIsRefreshToken = false;
                 for (String stag : mRequestTagList) {
                     switch (stag) {
-                        case MethodUrl.USER_INFO:
-
-                            break;
                         case MethodUrl.nameCode://{
                             getNameCodeInfo();
                             break;

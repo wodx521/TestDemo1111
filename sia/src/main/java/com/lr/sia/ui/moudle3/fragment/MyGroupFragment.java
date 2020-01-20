@@ -7,7 +7,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lr.sia.R;
@@ -108,6 +107,14 @@ public class MyGroupFragment extends BasicFragment {
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden && getUserVisibleHint()) {
+            getMyGroupsAction();
+        }
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         rvList = view.findViewById(R.id.rvList);
         pageViewEmpty = view.findViewById(R.id.page_view_empty);
@@ -117,10 +124,16 @@ public class MyGroupFragment extends BasicFragment {
         myGroupAdapter.setItemClickListener(new MyGroupAdapter.ItemClickListener() {
             @Override
             public void onItemClickListener(int position) {
-                Intent intent = new Intent(getActivity(), ConversationActivity.class);
-                Conversation conversation = new Conversation(Conversation.ConversationType.Group,"group");
-                intent.putExtra("conversation", conversation);
-                startActivity(intent);
+                List<Map<String, Object>> mapList = myGroupAdapter.getmGroupList();
+                if (mapList.size()>0) {
+                    Map<String, Object> stringObjectMap = mapList.get(position);
+                    String rcId = stringObjectMap.get("rc_id") + "";
+                    Intent intent = new Intent(getActivity(), ConversationActivity.class);
+                    Conversation conversation = new Conversation(Conversation.ConversationType.Group, rcId,0);
+                    intent.putExtra("conversation", conversation);
+                    startActivity(intent);
+
+                }
             }
         });
     }

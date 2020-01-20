@@ -175,7 +175,6 @@ public class MethodUrl {
     public static final String USER_USERLOGIN = "User/userLogin";
 
 
-    public static final String USER_INFO = "Personal/index";//获取用户基本信息
     public static final String USER_HEAD_IMAGE = "Personal/portrait";//用户头像上传
     public static final String USER_NAME = "Personal/editName";//修改昵称
     public static final String UPDATE_PAYCODE = "Personal/editPwd";//修改支付密码

@@ -90,10 +90,13 @@ public class TransferMoneyActivity1 extends BasicActivity implements RequestView
                 switch (tData.get("code") + "") {
                     case "1": //请求成功
                         mTradePassDialog.dismiss();
-                        String red_id = tData.get("data") + "";
+                        String redId = tData.get("data") + "";
+                        intent = new Intent();
+                        intent.putExtra("red_id", redId);
+                        intent.putExtra("text", "转账" + etMoney.getText() + "USDT,请查收");
+                        setResult(RESULT_OK,intent);
                         finish();
                         // 发送转账信息
-
                         break;
                     case "0": //请求失败
                         showToastMsg(tData.get("msg") + "");

@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.lr.sia.R;
-
-import com.lr.sia.utils.tool.LogUtilDebug;
+import com.lr.sia.basic.MbsConstans;
+import com.lr.sia.ui.moudle3.activity.RedMoneyActivity1;
+import com.lr.sia.utils.tool.SPUtils;
 import com.lr.sia.utils.tool.UtilTools;
 
 import cn.wildfire.chat.kit.annotation.ExtContextMenuItem;
@@ -24,53 +25,15 @@ public class RedExt extends ConversationExt {
      */
     @ExtContextMenuItem(title = "红包")
     public void redPacket(View containerView, Conversation conversation) {
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.setType("*/*");//无类型限制
-//        intent.addCategory(Intent.CATEGORY_OPENABLE);
-//        startActivityForResult(intent, 100);
-//        TypingMessageContent content = new TypingMessageContent(TypingMessageContent.TYPING_FILE);
-//        messageViewModel.sendMessage(conversation, content);
-
-        LogUtilDebug.i("show","会话类型:"+conversation.type);
-       /* TypingMessageContent content = new TypingMessageContent(TypingMessageContent.TYPING_RED);
-        messageViewModel.sendMessage(conversation, content);*/
-
-//        Intent intent = new Intent(activity, RedMoneyActivity.class);
-//        intent.putExtra("id",conversation.target);
-//        if (conversation.type == Conversation.ConversationType.Single){
-//            intent.putExtra("type","1");
-//        }else {
-//            intent.putExtra("type","2");
-//        }
-//        startActivityForResult(intent, 101);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-
-                    Bundle bundle = data.getExtras();
-                    if (bundle != null){
-                        String cid = bundle.get("red_id")+"";
-                        String content ;
-                        if (UtilTools.empty(bundle.get("text"))){
-                            content = "大吉大利,恭喜发财";
-                        }else {
-                            content = bundle.get("text")+"";
-                        }
-
-                        RedPacketMessageContent messageContent = new RedPacketMessageContent();
-                        messageContent.setContent(content);
-                        messageContent.cid = cid;
-                        messageContent.redPackType = "1";
-                        messageViewModel.sendRedMessage(conversation,messageContent);
-                    }
-
-
-
+        Intent intent = new Intent(activity, RedMoneyActivity1.class);
+        intent.putExtra("tarid", conversation.target);
+        if (Conversation.ConversationType.Single == conversation.type) {
+            intent.putExtra("type", "1");
+            intent.putExtra("id", (String) SPUtils.get("friendId", ""));
+        } else {
+            intent.putExtra("type", "2");
         }
-
-
+        activity.startActivityForResult(intent, MbsConstans.SEND_RED);
     }
 
     @Override
@@ -86,5 +49,27 @@ public class RedExt extends ConversationExt {
     @Override
     public String title(Context context) {
         return "红包";
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            if (bundle != null) {
+                String cid = bundle.get("red_id") + "";
+                String content;
+                if (UtilTools.empty(bundle.get("text"))) {
+                    content = activity.getString(R.string.redMoneyDes);
+                } else {
+                    content = bundle.get("text") + "";
+                }
+
+                RedPacketMessageContent messageContent = new RedPacketMessageContent();
+                messageContent.setContent(content);
+                messageContent.cid = cid;
+                messageContent.redPackType = "1";
+                messageViewModel.sendRedMessage(conversation, messageContent);
+            }
+        }
     }
 }

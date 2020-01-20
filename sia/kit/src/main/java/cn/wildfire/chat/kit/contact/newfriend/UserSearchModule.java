@@ -38,7 +38,7 @@ public class UserSearchModule extends SearchableModule<UserInfo, UserViewHolder>
 
     @Override
     public void onClick(Fragment fragment, UserViewHolder holder, View view, UserInfo userInfo) {
-        Intent intent = new Intent(fragment.getActivity(), UserInfoActivity1.class);
+        Intent intent = new Intent(fragment.getActivity(), UserInfoActivity.class);
         intent.putExtra("userInfo", userInfo);
         fragment.startActivity(intent);
     }

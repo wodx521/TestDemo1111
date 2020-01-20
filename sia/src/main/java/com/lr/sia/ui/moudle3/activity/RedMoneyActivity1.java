@@ -107,16 +107,20 @@ public class RedMoneyActivity1 extends BasicActivity implements TradePassDialog.
                 switch (tData.get("code") + "") {
                     case "1": //请求成功
                         mTradePassDialog.dismiss();
-                        String red_id = tData.get("data") + "";
+                        String redId = tData.get("data") + "";
+                        intent = new Intent();
+                        intent.putExtra("red_id", redId);
+                        if (UtilTools.empty(beizhuEt.getText().toString())) {
+                            intent.putExtra("text", getString(R.string.redMoneyDes));
+                        } else {
+                            intent.putExtra("text", beizhuEt.getText() + "");
+                        }
                         setResult(RESULT_OK);
                         finish();
-                        // TODO: 2020/1/17 发送红包
-
                         break;
                     case "0": //请求失败
                         showToastMsg(tData.get("msg") + "");
                         break;
-
                     case "-1": //token过期
                         closeAllActivity();
                         intent = new Intent(RedMoneyActivity1.this, LoginActivity1.class);

@@ -10,9 +10,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.jaeger.library.StatusBarUtil;
 import com.lr.sia.R;
 import com.lr.sia.api.MethodUrl;
 import com.lr.sia.basic.BasicActivity;
@@ -67,7 +69,7 @@ public class RedLogActivity extends BasicActivity implements View.OnClickListene
         rbSend.setOnClickListener(this);
         rbReceive.setOnClickListener(this);
         pageViewEmpty.setOnClickListener(this);
-
+        StatusBarUtil.setColorForSwipeBack(this, ContextCompat.getColor(this, MbsConstans.TOP_BAR_COLOR), MbsConstans.ALPHA);
         redLogListAdapter = new RedLogListAdapter(RedLogActivity.this);
         lRecyclerViewAdapter = new LRecyclerViewAdapter(redLogListAdapter);
         lrvList.setAdapter(lRecyclerViewAdapter);

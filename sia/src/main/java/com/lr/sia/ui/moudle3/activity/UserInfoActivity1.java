@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.wildfire.chat.kit.conversation.ConversationActivity;
 import cn.wildfirechat.model.Conversation;
+import cn.wildfirechat.model.UserInfo;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserInfoActivity1 extends BasicActivity implements RequestView {
@@ -159,6 +160,25 @@ public class UserInfoActivity1 extends BasicActivity implements RequestView {
                     default:
                 }
                 break;
+            case MethodUrl.CHAT_QUERY_ID:
+                switch (tData.get("code") + "") {
+                    case "1": //请求成功
+                        if (!UtilTools.empty(tData.get("data") + "")) {
+                            String id = tData.get("data")+"";
+                            getUserInfoAction(id);
+                        }
+                        break;
+                    case "0": //请求失败
+                        showToastMsg(tData.get("msg") + "");
+                        break;
+                    case "-1": //token过期
+                        closeAllActivity();
+                        intent = new Intent(UserInfoActivity1.this, LoginActivity1.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                }
+                break;
             default:
         }
     }
@@ -206,11 +226,16 @@ public class UserInfoActivity1 extends BasicActivity implements RequestView {
         tvTitle.setText(R.string.seal_conversation_title_defult);
         mLoadingWindow = new LoadingWindow(UserInfoActivity1.this, R.style.Dialog);
         userId = getIntent().getStringExtra("userId");
+        UserInfo userInfo = getIntent().getParcelableExtra("userInfo");
         int from = getIntent().getIntExtra("from", -1);
-        if (from == 1) {
-            getInfoAction();
+        if (userInfo == null) {
+            if (from == 1) {
+                getInfoAction();
+            } else {
+                getUserInfoAction(userId);
+            }
         } else {
-            getUserInfoAction(userId);
+            exchangeId(userInfo.uid);
         }
     }
 
@@ -222,6 +247,16 @@ public class UserInfoActivity1 extends BasicActivity implements RequestView {
         map.put("token", MbsConstans.ACCESS_TOKEN);
         map.put("rc_id", userId);
         mRequestPresenterImp.requestPostToMap(MethodUrl.CHAT_QUERY_USERINFO, map);
+    }
+
+    private void exchangeId(String userId) {
+        Map<String, Object> map = new HashMap<>();
+        if (UtilTools.empty(MbsConstans.ACCESS_TOKEN)) {
+            MbsConstans.ACCESS_TOKEN = SPUtils.get(MbsConstans.SharedInfoConstans.ACCESS_TOKEN, "").toString();
+        }
+        map.put("token", MbsConstans.ACCESS_TOKEN);
+        map.put("rc_id", userId);
+        mRequestPresenterImp.requestPostToMap(MethodUrl.CHAT_QUERY_ID, map);
     }
 
     @OnClick({R.id.tvFavorite, R.id.tvChat, R.id.left_back_lay})

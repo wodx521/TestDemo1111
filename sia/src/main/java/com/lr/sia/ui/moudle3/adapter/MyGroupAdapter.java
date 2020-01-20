@@ -9,14 +9,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lr.sia.R;
 import com.lr.sia.utils.imageload.GlideUtils;
-import com.lr.sia.utils.tool.LogUtilDebug;
-import com.lr.sia.utils.tool.UtilTools;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +29,13 @@ public class MyGroupAdapter extends RecyclerView.Adapter {
     public MyGroupAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
+    }
+
+    public List<Map<String, Object>> getmGroupList() {
+        if (mGroupList == null) {
+            mGroupList = new ArrayList<>();
+        }
+        return mGroupList;
     }
 
     @NonNull

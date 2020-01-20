@@ -121,7 +121,6 @@ public class MyFollowFragment extends BasicFragment {
                     Conversation conversation = new Conversation(Conversation.ConversationType.Single, rcId, 0);
                     intent.putExtra("conversation", conversation);
                     startActivity(intent);
-                    getActivity().finish();
                 }
             }
         });

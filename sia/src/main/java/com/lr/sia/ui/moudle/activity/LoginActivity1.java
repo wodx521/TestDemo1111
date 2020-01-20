@@ -221,7 +221,7 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
                                 .putString("token", MbsConstans.RONGYUN_MAP.get("im_token") + "")
                                 .apply();
                         intent = new Intent(LoginActivity1.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
                         break;

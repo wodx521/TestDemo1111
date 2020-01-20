@@ -471,5 +471,6 @@
     <string name="inputMarketId">请输入联盟商城的用户ID</string>
     <string name="getId">去获取</string>
     <string name="inputExchangeNumber">请输入兑换数量</string>
+    <string name="redNotice">The hand is slow, the red envelope has been grabbed!</string>
 
 </resources>

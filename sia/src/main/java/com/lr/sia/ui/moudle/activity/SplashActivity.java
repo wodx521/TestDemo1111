@@ -196,8 +196,6 @@ public class SplashActivity extends BasicActivity {
 
     private void initView() {
         initSqlit();
-        initAnimation();
-        // HandlerUtil.init(this).postMessage(null, null, 500, count);
 
         HandlerUtil.doMessage(new HandlerUtil.MessageCallBack() {
             @Override
@@ -218,7 +216,7 @@ public class SplashActivity extends BasicActivity {
                             //MbsConstans.REFRESH_TOKEN = SPUtils.get(SplashActivity.this, MbsConstans.SharedInfoConstans.REFRESH_TOKEN, "").toString();
                             String s = SPUtils.get(SplashActivity.this, MbsConstans.SharedInfoConstans.LOGIN_INFO, "").toString();
                             MbsConstans.USER_MAP = JSONUtil.getInstance().jsonMap(s);
-                            if (MbsConstans.USER_MAP == null || MbsConstans.USER_MAP.isEmpty() || UtilTools.empty(MbsConstans.ACCESS_TOKEN)) {
+                            if (UtilTools.empty(MbsConstans.ACCESS_TOKEN)) {
                                 intent = new Intent(SplashActivity.this, LoginActivity1.class);
                                 startActivity(intent);
                                 finish();
@@ -247,72 +245,6 @@ public class SplashActivity extends BasicActivity {
             }
         });
 
-    }
-
-    private void initAnimation() {
-
-	/*	new Handler(){
-,
-			@Override
-			public void handleMessage(Message msg) {
-				super.handleMessage(msg);
-				String code = mShared.getString(MbsConstans.SharedInfoConstans.IS_FIRST_START, "");
-				Intent intent ;
-				if (code.equals(MbsConstans.UpdateAppConstans.VERSION_APP_CODE+"")) {
-					intent = new Intent(SplashActivity.this,MainActivity.class);
-					startActivity(intent);
-					finish();
-					//loadImage();
-				}else{
-					intent = new Intent(SplashActivity.this, MainActivity.class);
-					startActivity(intent);
-					SplashActivity.this.finish();
-				}
-
-			}
-		}.sendEmptyMessageDelayed(0, 5000);*/
-
-
-		/*float pivotValue = 0.5f;
-		float toDegree = 360.0f;
-		mRotateAnimation = new RotateAnimation(toDegree, toDegree, Animation.RELATIVE_TO_SELF, pivotValue,
-				Animation.RELATIVE_TO_SELF, pivotValue);
-		mRotateAnimation.setFillAfter(true);
-		mRotateAnimation.setInterpolator(ANIMATION_INTERPOLATOR);
-		mRotateAnimation.setDuration(ROTATION_ANIMATION_DURATION);
-		//mRotateAnimation.setRepeatCount(Animation.INFINITE);
-		//mRotateAnimation.setRepeatMode(Animation.RESTART);
-		mRotateAnimation.setDuration(1000);
-		mSplashImageView.startAnimation(mRotateAnimation);
-
-		mRotateAnimation.setAnimationListener(new Animation.AnimationListener() {
-
-			@Override
-			public void onAnimationStart(Animation animation) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onAnimationRepeat(Animation animation) {
-				// TODO Auto-generated method stub
-
-			}
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				// TODO Auto-generated method stub
-				String code = mShared.getString(MbsConstans.SharedInfoConstans.IS_FIRST_START, "");
-				Intent intent ;
-				if (code.equals(MbsConstans.UpdateAppConstans.VERSION_APP_CODE+"")) {
-					intent = new Intent(SplashActivity.this, MainActivity.class);
-				}else{
-					intent = new Intent(SplashActivity.this, GuideViewPageActivity.class);
-				}
-				startActivity(intent);
-				overridePendingTransition(R.anim.splash_fade_in,R.anim.splash_fade_out);
-				SplashActivity.this.finish();
-			}
-		});*/
     }
 
     private void initSqlit() {
