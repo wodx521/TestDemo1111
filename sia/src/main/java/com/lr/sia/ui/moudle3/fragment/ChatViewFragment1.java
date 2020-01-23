@@ -2,6 +2,8 @@ package com.lr.sia.ui.moudle3.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -35,8 +37,9 @@ import java.util.Map;
 import cn.wildfire.chat.kit.ChatManagerHolder;
 import cn.wildfire.chat.kit.IMConnectionStatusViewModel;
 import cn.wildfire.chat.kit.IMServiceStatusViewModel;
-import cn.wildfire.chat.kit.contact.newfriend.SearchUserActivity;
 import cn.wildfirechat.client.ConnectionStatus;
+import cn.wildfirechat.model.GroupInfo;
+import cn.wildfirechat.model.GroupSearchResult;
 import cn.wildfirechat.remote.ChatManager;
 
 public class ChatViewFragment1 extends BasicFragment {
@@ -166,6 +169,24 @@ public class ChatViewFragment1 extends BasicFragment {
                 startActivity(intent);
             }
         });
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     protected void addFragment(int position, String title) {
@@ -206,7 +227,7 @@ public class ChatViewFragment1 extends BasicFragment {
                     status == ConnectionStatus.ConnectionStatusLogout ||
                     status == ConnectionStatus.ConnectionStatusUnconnected) {
                 LogUtilDebug.i("show", "重新连接聊天服务器");
-                ChatManager.Instance().disconnect(true);
+                ChatManager.Instance().disconnect(false);
                 //重新连接登录
                 if (UtilTools.empty(MbsConstans.RONGYUN_MAP)) {
                     String s = SPUtils.get(getActivity(), MbsConstans.SharedInfoConstans.RONGYUN_DATA, "").toString();

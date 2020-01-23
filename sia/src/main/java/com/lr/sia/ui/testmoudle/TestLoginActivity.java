@@ -1,4 +1,4 @@
-package com.lr.sia.ui.moudle.activity;
+package com.lr.sia.ui.testmoudle;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -25,6 +24,8 @@ import com.lr.sia.api.MethodUrl;
 import com.lr.sia.basic.BasicActivity;
 import com.lr.sia.basic.MbsConstans;
 import com.lr.sia.mvp.presenter.RequestPresenterImp;
+import com.lr.sia.ui.moudle.activity.ForgetPassActivity1;
+import com.lr.sia.ui.moudle.activity.MainActivity;
 import com.lr.sia.ui.moudle5.dialog.ChoosePopup;
 import com.lr.sia.utils.tool.JSONUtil;
 import com.lr.sia.utils.tool.LogUtilDebug;
@@ -32,26 +33,21 @@ import com.lr.sia.utils.tool.SPUtils;
 import com.lr.sia.utils.tool.UtilTools;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import cn.wildfire.chat.kit.ChatManagerHolder;
 import cn.wildfire.chat.kit.contact.model.UIUserInfo;
 import cn.wildfire.chat.kit.group.GroupViewModel;
-import cn.wildfirechat.model.GroupInfo;
+import cn.wildfirechat.client.ConnectionStatus;
 import cn.wildfirechat.model.UserInfo;
 import cn.wildfirechat.remote.ChatManager;
-import cn.wildfirechat.remote.GeneralCallback;
-import cn.wildfirechat.remote.GetGroupsCallback;
 
 /**
  * @author LaiRui
  */
-public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+public class TestLoginActivity extends BasicActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     private ImageView imgLoginClearUid, imgLoginClearPsw;
     private TextView tvChooseLanguage, forgetPassTv, codeRegister;
     private EditText editUid, editPsw;
@@ -62,6 +58,7 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
     private ChoosePopup choosePopup;
     private List<Map<String, Object>> mapList = new ArrayList<>();
     private GroupViewModel groupViewModel;
+    private int count = 0;
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -75,7 +72,7 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
 
     @Override
     public void init() {
-        choosePopup = new ChoosePopup(LoginActivity1.this);
+        choosePopup = new ChoosePopup(TestLoginActivity.this);
         tvChooseLanguage = findViewById(R.id.tvChooseLanguage);
         editUid = findViewById(R.id.edit_uid);
         imgLoginClearUid = findViewById(R.id.img_login_clear_uid);
@@ -228,16 +225,16 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
 //                        SPUtils.put(LoginActivity1.this, MbsConstans.SharedInfoConstans.LOGIN_PASSWORD, mPassWord + "");
                         if (!UtilTools.empty(dataMap.get("im_data"))) {
                             MbsConstans.RONGYUN_MAP = (Map<String, Object>) dataMap.get("im_data");
-                            SPUtils.put(LoginActivity1.this, MbsConstans.SharedInfoConstans.RONGYUN_DATA, JSONUtil.getInstance().objectToJson(MbsConstans.RONGYUN_MAP));
+                            SPUtils.put(TestLoginActivity.this, MbsConstans.SharedInfoConstans.RONGYUN_DATA, JSONUtil.getInstance().objectToJson(MbsConstans.RONGYUN_MAP));
                         }
-                        SPUtils.put(LoginActivity1.this, MbsConstans.SharedInfoConstans.ACCESS_TOKEN, MbsConstans.ACCESS_TOKEN);
-                        SPUtils.put(LoginActivity1.this, MbsConstans.SharedInfoConstans.LOGIN_ACCOUNT, mAccount + "");
-                        SPUtils.put(LoginActivity1.this, MbsConstans.SharedInfoConstans.LOGIN_PASSWORD, mPassWord + "");
+                        SPUtils.put(TestLoginActivity.this, MbsConstans.SharedInfoConstans.ACCESS_TOKEN, MbsConstans.ACCESS_TOKEN);
+                        SPUtils.put(TestLoginActivity.this, MbsConstans.SharedInfoConstans.LOGIN_ACCOUNT, mAccount + "");
+                        SPUtils.put(TestLoginActivity.this, MbsConstans.SharedInfoConstans.LOGIN_PASSWORD, mPassWord + "");
                         SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
                         sp.edit().putString("id", MbsConstans.RONGYUN_MAP.get("im_id") + "")
                                 .putString("token", MbsConstans.RONGYUN_MAP.get("im_token") + "")
                                 .apply();
-                        intent = new Intent(LoginActivity1.this, MainActivity.class);
+                        intent = new Intent(TestLoginActivity.this, MainActivity.class);
 //                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
@@ -270,7 +267,7 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
                 choosePopup.setOnChooseContentListener(new ChoosePopup.OnChooseContentListener() {
                     @Override
                     public void onChooseClickListener(int position) {
-                        SPUtils.put(LoginActivity1.this, "languageSelect", position);
+                        SPUtils.put(TestLoginActivity.this, "languageSelect", position);
                         recreate();
                     }
                 });
@@ -295,11 +292,11 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
                 btnLogin.setEnabled(false);
                 break;
             case R.id.forget_pass_tv:
-                intent = new Intent(LoginActivity1.this, ForgetPassActivity1.class);
+                intent = new Intent(TestLoginActivity.this, ForgetPassActivity1.class);
                 startActivity(intent);
                 break;
             case R.id.code_register:
-                intent = new Intent(LoginActivity1.this, RegisterActivity1.class);
+                intent = new Intent(TestLoginActivity.this, TestRegisterActivity.class);
                 startActivityForResult(intent, MbsConstans.IS_APPROVE_RIGHT);
                 break;
             default:
@@ -346,54 +343,15 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
                         String userId = data.getStringExtra("userId");
                         String imToken = data.getStringExtra("imToken");
                         ArrayList<String> groupsId = data.getStringArrayListExtra("groupsId");
-                        ChatManagerHolder.gChatManager.connect(userId, imToken);
-                        groupViewModel = ViewModelProviders.of(LoginActivity1.this).get(GroupViewModel.class);
-                        ChatManager.Instance().getMyGroups(new GetGroupsCallback() {
-                            @Override
-                            public void onSuccess(List<GroupInfo> groupInfos) {
-                                GroupInfo groupInfo1 = new GroupInfo();
-                                groupInfo1.owner = userId;
-                                if (groupInfos == null || groupInfos.isEmpty()) {
-                                    // 如果群组为空创建群组
-                                    createGroupInfo(userId);
-                                } else {
-                                    if (!groupInfos.contains(groupInfo1)) {
-                                        createGroupInfo(userId);
-                                    }
-                                }
-                            }
+                        if (ChatManager.Instance().getConnectionStatus() != ConnectionStatus.ConnectionStatusConnected || !ChatManager.Instance().getUserId().equals(userId)) {
+                            ChatManager.Instance().connect(userId, imToken);
+                        }
 
-                            @Override
-                            public void onFail(int errorCode) {
-                            }
-                        });
 
                         if (groupsId != null && groupsId.size() > 0) {
-                            ExecutorService fixedThreadPool = Executors.newFixedThreadPool(groupsId.size());
-                            for (String group : groupsId) {
-                                fixedThreadPool.execute(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        try {
-                                            Thread.sleep(10000);
-                                            ChatManagerHolder.gChatManager.addGroupMembers(group, Arrays.asList(ChatManager.Instance().getUserId()), Arrays.asList(0), null, new GeneralCallback() {
-                                                @Override
-                                                public void onSuccess() {
-                                                    groupViewModel.setFavGroup(group, true);
-                                                    Log.e("add", "加群成功");
-                                                }
-
-                                                @Override
-                                                public void onFail(int errorCode) {
-                                                    Log.e("add", "加群失败");
-                                                }
-                                            });
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
-
+                            for (int i = 0; i < groupsId.size(); i++) {
+                                groupViewModel = ViewModelProviders.of(TestLoginActivity.this).get(GroupViewModel.class);
+                                groupViewModel.setFavGroup(groupsId.get(i), true);
                             }
                         }
                     }
@@ -408,7 +366,7 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
         UserInfo userInfo = ChatManager.Instance().getUserInfo(userId, false);
         List<UIUserInfo> userInfos = new ArrayList<>();
         userInfos.add(new UIUserInfo(userInfo));
-        groupViewModel.createGroup(LoginActivity1.this, userInfos).observe(LoginActivity1.this, result -> {
+        groupViewModel.createGroup(TestLoginActivity.this, userInfos).observe(TestLoginActivity.this, result -> {
             if (result.isSuccess()) {
                 LogUtilDebug.i("show", "创建群聊成功:" + result.getResult());
                 groupViewModel.setFavGroup(result.getResult(), true);
@@ -418,7 +376,7 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
     }
 
     private void bindIdAction(String userId, String groupId) {
-        mRequestPresenterImp = new RequestPresenterImp(this, LoginActivity1.this);
+        mRequestPresenterImp = new RequestPresenterImp(this, TestLoginActivity.this);
         Map<String, Object> bindParams = new HashMap<>();
         bindParams.put("user_im_code", userId);
         bindParams.put("group_im_code", groupId);

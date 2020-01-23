@@ -173,7 +173,8 @@ public class MethodUrl {
     public static final String USER_USERREG = "User/userReg";
     // 登录
     public static final String USER_USERLOGIN = "User/userLogin";
-
+    // 绑定野火和本地id
+    public static final String USER_SETIMGROUPID = "User/setImGroupId";
 
     public static final String USER_HEAD_IMAGE = "Personal/portrait";//用户头像上传
     public static final String USER_NAME = "Personal/editName";//修改昵称

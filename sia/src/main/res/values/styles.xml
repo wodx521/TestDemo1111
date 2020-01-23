@@ -13,13 +13,13 @@
         -->
         <item name="android:windowBackground">@color/windowBackground</item>
         <!--colorAccent 对应EditText编辑时、RadioButton选中、CheckBox等选中时的颜色-->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/white</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
         <!--<item name="android:textColorHint">@color/divide_line</item>-->
         <item name="colorControlNormal">@color/divide_line</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/white</item>
         <!--<item name="colorControlHighlight">@color/yellow</item>-->
     </style>
     <style name="popWindowStyle">

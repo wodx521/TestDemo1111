@@ -121,16 +121,7 @@ public class GroupViewModel extends ViewModel implements OnGroupInfoUpdateListen
             selectedIds.add(id);
             selectedUsers.add(ChatManager.Instance().getUserInfo(id, false));
         }
-        String groupName = "";
-        for (int i = 0; i < 3 && i < selectedUsers.size(); i++) {
-            groupName += selectedUsers.get(i).displayName + "、";
-        }
-        groupName = groupName.substring(0, groupName.length() - 1);
-        if (selectedUsers.size() > 3) {
-            groupName += " ...";
-        }
-
-        groupName = groupName.substring(0, groupName.length() - 1);
+        String groupName = "群组" + id;
 
         MutableLiveData<OperateResult<String>> groupLiveData = new MutableLiveData<>();
         String finalGroupName = groupName;
@@ -185,14 +176,50 @@ public class GroupViewModel extends ViewModel implements OnGroupInfoUpdateListen
         return groupLiveData;
     }
 
-    public  MutableLiveData<Boolean> addGroupMember(GroupInfo groupInfo, List<String> memberIds) {
+    private @Nullable
+    String generateGroupPortrait(Context context, List<UserInfo> userInfos) throws Exception {
+        List<Bitmap> bitmaps = new ArrayList<>();
+        for (UserInfo userInfo : userInfos) {
+            Drawable drawable;
+            try {
+                drawable = Glide.with(context).load(userInfo.portrait).error(R.mipmap.avatar_def).submit(60, 60).get();
+            } catch (Exception e) {
+                e.printStackTrace();
+                drawable = Glide.with(context).load(R.mipmap.avatar_def).submit(60, 60).get();
+            }
+            if (drawable instanceof BitmapDrawable) {
+                bitmaps.add(((BitmapDrawable) drawable).getBitmap());
+            }
+        }
+        Bitmap bitmap = CombineBitmapTools.combimeBitmap(context, 60, 60, bitmaps);
+        if (bitmap == null) {
+            return null;
+        }
+        //create a file to write bitmap data
+        File f = new File(context.getCacheDir(), System.currentTimeMillis() + ".png");
+        f.createNewFile();
+
+        //Convert bitmap to byte array
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+        byte[] bitmapData = bos.toByteArray();
+
+        //write the bytes in file
+        FileOutputStream fos = new FileOutputStream(f);
+        fos.write(bitmapData);
+        fos.flush();
+        fos.close();
+
+        return f.getAbsolutePath();
+    }
+
+    public MutableLiveData<Boolean> addGroupMember(GroupInfo groupInfo, List<String> memberIds) {
         MutableLiveData<Boolean> result = new MutableLiveData<>();
         // TODO need update group portrait or not?
         ChatManager.Instance().addGroupMembers(groupInfo.target, memberIds, Arrays.asList(0), null, new GeneralCallback() {
             @Override
             public void onSuccess() {
                 result.setValue(true);
-
             }
 
             @Override
@@ -330,7 +357,6 @@ public class GroupViewModel extends ViewModel implements OnGroupInfoUpdateListen
 
         return data;
     }
-
 
     private List<UIUserInfo> memberToUIUserInfo(String groupId, List<GroupMember> members) {
         if (members == null || members.isEmpty()) {
@@ -488,43 +514,6 @@ public class GroupViewModel extends ViewModel implements OnGroupInfoUpdateListen
             }
         });
         return result;
-    }
-
-    private @Nullable
-    String generateGroupPortrait(Context context, List<UserInfo> userInfos) throws Exception {
-        List<Bitmap> bitmaps = new ArrayList<>();
-        for (UserInfo userInfo : userInfos) {
-            Drawable drawable;
-            try {
-                drawable = Glide.with(context).load(userInfo.portrait).error(R.mipmap.avatar_def).submit(60, 60).get();
-            } catch (Exception e) {
-                e.printStackTrace();
-                drawable = Glide.with(context).load(R.mipmap.avatar_def).submit(60, 60).get();
-            }
-            if (drawable instanceof BitmapDrawable) {
-                bitmaps.add(((BitmapDrawable) drawable).getBitmap());
-            }
-        }
-        Bitmap bitmap = CombineBitmapTools.combimeBitmap(context, 60, 60, bitmaps);
-        if (bitmap == null) {
-            return null;
-        }
-        //create a file to write bitmap data
-        File f = new File(context.getCacheDir(), System.currentTimeMillis() + ".png");
-        f.createNewFile();
-
-        //Convert bitmap to byte array
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-        byte[] bitmapData = bos.toByteArray();
-
-        //write the bytes in file
-        FileOutputStream fos = new FileOutputStream(f);
-        fos.write(bitmapData);
-        fos.flush();
-        fos.close();
-
-        return f.getAbsolutePath();
     }
 
     @Override

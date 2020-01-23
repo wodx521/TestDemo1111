@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -48,7 +49,7 @@ public class CoinInfoActivity extends BasicActivity implements View.OnClickListe
 
     @Override
     public void init() {
-        StatusBarUtil.setLightMode(this);
+        StatusBarUtil.setColorForSwipeBack(this, ContextCompat.getColor(this, MbsConstans.TOP_BAR_COLOR), MbsConstans.ALPHA);
         HashMap<String, Object> coinInfo = (HashMap<String, Object>) getIntent().getSerializableExtra("coinInfo");
         tvPrice = findViewById(R.id.tvPrice);
         rvTradeLog = findViewById(R.id.rvTradeLog);

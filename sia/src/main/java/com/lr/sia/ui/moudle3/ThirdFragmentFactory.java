@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import com.lr.sia.ui.moudle3.fragment.MyFollowFragment;
 import com.lr.sia.ui.moudle3.fragment.MyGroupFragment;
 
+import cn.wildfire.chat.kit.contact.ContactListFragment;
 import cn.wildfire.chat.kit.conversationlist.ConversationListFragment;
 import cn.wildfire.chat.kit.group.GroupListFragment;
 
@@ -27,10 +28,11 @@ public class ThirdFragmentFactory {
                     break;
                 case 1:
                     baseFragment = new MyFollowFragment();
+//                    baseFragment = new ContactListFragment();
                     break;
                 case 2:
-//                    baseFragment = new GroupListFragment();
-                    baseFragment = new MyGroupFragment();
+                    baseFragment = new GroupListFragment();
+//                    baseFragment = new MyGroupFragment();
                     break;
                 default:
             }

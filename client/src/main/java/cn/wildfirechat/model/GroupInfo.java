@@ -3,6 +3,8 @@ package cn.wildfirechat.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 /**
  * Created by heavyrainlee on 17/12/2017.
  */
@@ -110,4 +112,17 @@ public class GroupInfo implements Parcelable {
             return new GroupInfo[size];
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GroupInfo groupInfo = (GroupInfo) o;
+        return owner.equals(groupInfo.owner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(owner);
+    }
 }

@@ -134,11 +134,11 @@
                     android:pathPrefix="/gizmos"
                     android:scheme="http" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
@@ -379,16 +379,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullScreen" />
         <activity
-            android:name="com.lr.sia.ui.moudle3.location.ui.activity.MyLocationActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="cn.wildfire.chat.kit.group.SetGroupNameActivity"
             android:label="修改群名称"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.lr.sia.ui.moudle3.location.ui.activity.ShowLocationActivity"
-            android:screenOrientation="portrait" />
-
         <activity
             android:name="cn.wildfire.chat.kit.mm.MMPreviewActivity"
             android:theme="@style/AppTheme.FullScreen" />
@@ -549,6 +542,14 @@
         <activity
             android:name="cn.wildfire.chat.kit.location.ui.activity.TestActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.testmoudle.TestLoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.testmoudle.TestRegisterActivity" />
     </application>
 
 </manifest>

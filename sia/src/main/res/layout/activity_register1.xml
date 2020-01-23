@@ -165,7 +165,6 @@
                         android:layout_toRightOf="@+id/password_view"
                         android:background="@null"
                         android:hint="@string/inputVerificationCode"
-                        android:maxLength="4"
                         android:paddingLeft="@dimen/dp_10"
                         android:paddingTop="@dimen/dp_15"
                         android:paddingRight="@dimen/dp_10"

@@ -2,6 +2,7 @@ package cn.wildfire.chat.kit.group;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +17,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lr.sia.R;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.wildfire.chat.kit.ChatManagerHolder;
 import cn.wildfire.chat.kit.conversation.ConversationActivity;
 import cn.wildfirechat.model.Conversation;
 import cn.wildfirechat.model.GroupInfo;
+import cn.wildfirechat.model.GroupMember;
 import cn.wildfirechat.remote.ChatManager;
+import cn.wildfirechat.remote.GeneralCallback;
 import cn.wildfirechat.remote.GetGroupsCallback;
 
 public class GroupListFragment extends Fragment implements OnGroupItemClickListener {
@@ -33,9 +39,10 @@ public class GroupListFragment extends Fragment implements OnGroupItemClickListe
     TextView tipTextView;
     @BindView(R.id.groupsLinearLayout)
     LinearLayout groupsLinearLayout;
-
+    private List<GroupInfo> groupInfoList = new ArrayList<>();
     private GroupListAdapter groupListAdapter;
     private OnGroupItemClickListener onGroupItemClickListener;
+    private boolean isContain = false;
 
     public void setOnGroupItemClickListener(OnGroupItemClickListener onGroupItemClickListener) {
         this.onGroupItemClickListener = onGroupItemClickListener;
@@ -44,20 +51,28 @@ public class GroupListFragment extends Fragment implements OnGroupItemClickListe
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        reloadGroupList();
+        if (groupListAdapter != null && isVisibleToUser) {
+            reloadGroupList();
+        }
     }
 
     public void reloadGroupList() {
         ChatManager.Instance().getMyGroups(new GetGroupsCallback() {
             @Override
             public void onSuccess(List<GroupInfo> groupInfos) {
+                groupInfoList.clear();
                 if (groupInfos == null || groupInfos.isEmpty()) {
                     groupsLinearLayout.setVisibility(View.GONE);
                     tipTextView.setVisibility(View.VISIBLE);
-                    return;
+                } else {
+                    for (GroupInfo groupInfo : groupInfos) {
+                        if (groupInfo != null) {
+                            groupInfoList.add(groupInfo);
+                        }
+                    }
+                    groupListAdapter.setGroupInfos(groupInfoList);
+                    groupListAdapter.notifyDataSetChanged();
                 }
-                groupListAdapter.setGroupInfos(groupInfos);
-                groupListAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -69,13 +84,6 @@ public class GroupListFragment extends Fragment implements OnGroupItemClickListe
         });
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        reloadGroupList();
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -83,6 +91,12 @@ public class GroupListFragment extends Fragment implements OnGroupItemClickListe
         ButterKnife.bind(this, view);
         init();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        reloadGroupList();
     }
 
     private void init() {
@@ -99,9 +113,36 @@ public class GroupListFragment extends Fragment implements OnGroupItemClickListe
             onGroupItemClickListener.onGroupClick(groupInfo);
             return;
         }
-        Intent intent = new Intent(getActivity(), ConversationActivity.class);
-        Conversation conversation = new Conversation(Conversation.ConversationType.Group, groupInfo.target);
-        intent.putExtra("conversation", conversation);
-        startActivity(intent);
+        if (groupInfo.owner.equals(ChatManager.Instance().getUserId())) {
+            Intent intent = new Intent(getActivity(), ConversationActivity.class);
+            Conversation conversation = new Conversation(Conversation.ConversationType.Group, groupInfo.target);
+            intent.putExtra("conversation", conversation);
+            startActivity(intent);
+        } else {
+            GroupMember groupMember1 = ChatManager.Instance().getGroupMember(groupInfo.target, ChatManager.Instance().getUserId());
+            if (groupMember1 != null) {
+                Intent intent = new Intent(getActivity(), ConversationActivity.class);
+                Conversation conversation = new Conversation(Conversation.ConversationType.Group, groupInfo.target);
+                intent.putExtra("conversation", conversation);
+                startActivity(intent);
+            } else {
+                ChatManagerHolder.gChatManager.addGroupMembers(groupInfo.target, Arrays.asList(ChatManager.Instance().getUserId()), Arrays.asList(0), null, new GeneralCallback() {
+                    @Override
+                    public void onSuccess() {
+                        Intent intent = new Intent(getActivity(), ConversationActivity.class);
+                        Conversation conversation = new Conversation(Conversation.ConversationType.Group, groupInfo.target);
+                        intent.putExtra("conversation", conversation);
+                        startActivity(intent);
+                        Log.e("add", "加群成功");
+                    }
+
+                    @Override
+                    public void onFail(int errorCode) {
+                        Log.e("add", "加群失败");
+                    }
+                });
+            }
+        }
+
     }
 }

@@ -1,20 +1,40 @@
 package com.lr.sia.ui.moudle.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.jaeger.library.StatusBarUtil;
 import com.lr.sia.R;
 import com.lr.sia.api.MethodUrl;
 import com.lr.sia.basic.BasicActivity;
 import com.lr.sia.basic.MbsConstans;
+import com.lr.sia.mvp.presenter.RequestPresenterImp;
 import com.lr.sia.mywidget.view.DouYuView;
+import com.lr.sia.utils.tool.LogUtilDebug;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import cn.wildfire.chat.kit.ChatManagerHolder;
+import cn.wildfire.chat.kit.contact.model.UIUserInfo;
+import cn.wildfire.chat.kit.group.GroupViewModel;
+import cn.wildfire.chat.kit.third.utils.UIUtils;
+import cn.wildfirechat.model.GroupInfo;
+import cn.wildfirechat.model.UserInfo;
+import cn.wildfirechat.remote.ChatManager;
+import cn.wildfirechat.remote.GeneralCallback;
+import cn.wildfirechat.remote.GetGroupsCallback;
 
 public class VerifyRobotActivity extends BasicActivity implements View.OnClickListener {
     private ImageView backImg;
@@ -30,6 +50,9 @@ public class VerifyRobotActivity extends BasicActivity implements View.OnClickLi
             R.drawable.yanzheng_12, R.drawable.yanzheng_13, R.drawable.yanzheng_14, R.drawable.yanzheng_15,
             R.drawable.yanzheng_16, R.drawable.yanzheng_17, R.drawable.yanzheng_18, R.drawable.yanzheng_19,
             R.drawable.yanzheng_20};
+    private GroupViewModel groupViewModel;
+    private boolean isCreate = false;
+    private boolean isAdd = false;
 
     @Override
     public int getContentView() {
@@ -96,9 +119,93 @@ public class VerifyRobotActivity extends BasicActivity implements View.OnClickLi
                 dismissProgressDialog();
                 switch (tData.get("code") + "") {
                     case "1":// 成功
+                        Map<String, Object> userInfoMap = (Map<String, Object>) tData.get("data");
+                        String userId = userInfoMap.get("user") + "";
+                        String imToken = userInfoMap.get("im_token") + "";
+                        List<String> groupsId = (List<String>) userInfoMap.get("parent_group_ids");
+                        SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
+                        sp.edit().putString("id", userId)
+                                .putString("token", imToken)
+                                .apply();
+                        Intent intent = new Intent();
+                        intent.putExtra("userId",userId);
+                        intent.putExtra("imToken",imToken);
+                        intent.putStringArrayListExtra("groupsId", (ArrayList<String>) groupsId);
                         showToastMsg(tData.get("msg") + "");
-                        setResult(RESULT_OK);
+                        setResult(RESULT_OK,intent);
                         finish();
+//                        ChatManagerHolder.gChatManager.connect(userId, imToken);
+//                        groupViewModel = ViewModelProviders.of(VerifyRobotActivity.this).get(GroupViewModel.class);
+//                        ChatManager.Instance().getMyGroups(new GetGroupsCallback() {
+//                            @Override
+//                            public void onSuccess(List<GroupInfo> groupInfos) {
+//                                GroupInfo groupInfo1 = new GroupInfo();
+//                                groupInfo1.owner = userId;
+//                                if (groupInfos == null || groupInfos.isEmpty()) {
+//                                    // 如果群组为空创建群组
+//                                    UserInfo userInfo = ChatManager.Instance().getUserInfo(userId, false);
+//                                    List<UIUserInfo> userInfos = new ArrayList<>();
+//                                    userInfos.add(new UIUserInfo(userInfo));
+//                                    groupViewModel.createGroup(VerifyRobotActivity.this, userInfos).observe(VerifyRobotActivity.this, result -> {
+//                                        if (result.isSuccess()) {
+////                                            UIUtils.showToast(UIUtils.getString(R.string.create_group_success));
+//                                            LogUtilDebug.i("show", "创建群聊成功:" + result.getResult());
+//                                            groupViewModel.setFavGroup(result.getResult(), true);
+//                                            bindIdAction(userId, result.getResult());
+//                                        }
+//                                    });
+//                                } else {
+//                                    if (!groupInfos.contains(groupInfo1)) {
+//                                        UserInfo userInfo = ChatManager.Instance().getUserInfo(userId, false);
+//                                        List<UIUserInfo> userInfos = new ArrayList<>();
+//                                        userInfos.add(new UIUserInfo(userInfo));
+//                                        groupViewModel.createGroup(VerifyRobotActivity.this, userInfos).observe(VerifyRobotActivity.this, result -> {
+//                                            if (result.isSuccess()) {
+////                                            UIUtils.showToast(UIUtils.getString(R.string.create_group_success));
+//                                                LogUtilDebug.i("show", "创建群聊成功:" + result.getResult());
+//                                                groupViewModel.setFavGroup(result.getResult(), true);
+//                                                bindIdAction(userId, result.getResult());
+//                                            }
+//                                        });
+//                                    }
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onFail(int errorCode) {
+//                            }
+//                        });
+//                        List<String> memberIds = new ArrayList<>();
+//                        memberIds.add(userId);
+//                        if (groupsId != null && groupsId.size() > 0) {
+//                            for (String group : groupsId) {
+//                                ChatManager.Instance().addGroupMembers(group, memberIds, Arrays.asList(0), null, new GeneralCallback() {
+//                                    @Override
+//                                    public void onSuccess() {
+//                                        groupViewModel.setFavGroup(group, true);
+//                                        Log.e("add", "加群成功");
+//                                        showToastMsg(tData.get("msg") + "");
+//                                        setResult(RESULT_OK);
+//                                        finish();
+//                                    }
+//
+//                                    @Override
+//                                    public void onFail(int errorCode) {
+//                                        Log.e("add", "加群失败");
+//
+//                                    }
+//                                });
+//
+//                            }
+//                            showToastMsg(tData.get("msg") + "");
+//                                        setResult(RESULT_OK);
+//                                        finish();
+//                        } else {
+//                            showToastMsg(tData.get("msg") + "");
+//                            setResult(RESULT_OK);
+//                            finish();
+//                        }
+
                         break;
                     case "-1": // 超时
                         showToastMsg(tData.get("msg") + "");
@@ -113,6 +220,14 @@ public class VerifyRobotActivity extends BasicActivity implements View.OnClickLi
                 break;
             default:
         }
+    }
+
+    private void bindIdAction(String userId, String groupId) {
+        mRequestPresenterImp = new RequestPresenterImp(this, VerifyRobotActivity.this);
+        Map<String, Object> bindParams = new HashMap<>();
+        bindParams.put("user_im_code", userId);
+        bindParams.put("group_im_code", groupId);
+        mRequestPresenterImp.requestPostToMap(MethodUrl.USER_SETIMGROUPID, bindParams);
     }
 
     @Override

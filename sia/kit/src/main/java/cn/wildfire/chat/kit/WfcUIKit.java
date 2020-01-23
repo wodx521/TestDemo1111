@@ -90,7 +90,7 @@ public class WfcUIKit implements AVEngineKit.AVEngineCallback, OnReceiveMessageL
             String id = sp.getString("id", null);
             String token = sp.getString("token", null);
             if (!TextUtils.isEmpty(id) && !TextUtils.isEmpty(token)) {
-                ChatManagerHolder.gChatManager.connect(id, token);
+                ChatManager.Instance().connect(id, token);
             }
         } catch (NotInitializedExecption notInitializedExecption) {
             notInitializedExecption.printStackTrace();

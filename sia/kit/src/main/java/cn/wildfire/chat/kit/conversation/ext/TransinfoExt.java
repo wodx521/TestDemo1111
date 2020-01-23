@@ -25,11 +25,21 @@ public class TransinfoExt extends ConversationExt {
      */
     @ExtContextMenuItem(title = "转账")
     public void transInfo(View containerView, Conversation conversation) {
-        Intent intent = new Intent(activity, TransferMoneyActivity1.class);
-        intent.putExtra("tarid", conversation.target);
-        intent.putExtra("type", "1");
-        intent.putExtra("id", (String) SPUtils.get("friendId", ""));
-        activity.startActivity(intent);
+
+            Intent intent = new Intent(activity, TransferMoneyActivity1.class);
+            intent.putExtra("tarid", conversation.target);
+            intent.putExtra("type", "1");
+            intent.putExtra("id", (String) SPUtils.get("friendId", ""));
+            activity.startActivity(intent);
+
+    }
+
+    @Override
+    public boolean filter(Conversation conversation) {
+        if (conversation.type == Conversation.ConversationType.Single) {
+            return false;
+        }
+        return true;
     }
 
     @Override

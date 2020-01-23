@@ -1,6 +1,9 @@
-package com.lr.sia.ui.moudle.activity;
+package com.lr.sia.ui.testmoudle;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +20,7 @@ import com.lr.sia.R;
 import com.lr.sia.api.MethodUrl;
 import com.lr.sia.basic.BasicActivity;
 import com.lr.sia.basic.MbsConstans;
+import com.lr.sia.ui.moudle.activity.RegistActivity;
 import com.lr.sia.ui.moudle5.dialog.ChoosePopup;
 import com.lr.sia.ui.moudle5.dialog.PhoneAreaPopup;
 import com.lr.sia.utils.CountDownUtils;
@@ -28,7 +32,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RegisterActivity1 extends BasicActivity implements View.OnClickListener {
+import cn.wildfire.chat.kit.ChatManagerHolder;
+
+public class TestRegisterActivity extends BasicActivity implements View.OnClickListener {
     private TextView tvChooseLanguage, tvGetCode, tvHave, tvChoosePhone;
     private TabLayout tlRegisterAccount;
     private EditText editUid, editPsw, editEmail;
@@ -67,8 +73,8 @@ public class RegisterActivity1 extends BasicActivity implements View.OnClickList
         tvChoosePhone.setOnClickListener(this);
         tvHave.setText(Html.fromHtml(getString(R.string.haveAccount)));
         StatusBarUtil.setTranslucentForImageView(this, MbsConstans.ALPHA, null);
-        choosePopup = new ChoosePopup(RegisterActivity1.this);
-        phoneAreaPopup = new PhoneAreaPopup(RegisterActivity1.this);
+        choosePopup = new ChoosePopup(TestRegisterActivity.this);
+        phoneAreaPopup = new PhoneAreaPopup(TestRegisterActivity.this);
         countDownUtils = new CountDownUtils();
         mapList.clear();
         String[] spinnerItems = {"中文简体", "English", "日本語", "한국어"};
@@ -179,7 +185,7 @@ public class RegisterActivity1 extends BasicActivity implements View.OnClickList
                 dismissProgressDialog();
                 switch (tData.get("code") + "") {
                     case "1":// 成功
-                        intent = new Intent(RegisterActivity1.this, RegistActivity.class);
+                        intent = new Intent(TestRegisterActivity.this, RegistActivity.class);
                         if (tlRegisterAccount.getSelectedTabPosition() == 0) {
                             intent.putExtra("type", "1");
                             String account = editUid.getText().toString().trim();
@@ -201,6 +207,37 @@ public class RegisterActivity1 extends BasicActivity implements View.OnClickList
                         break;
                     default:
                 }
+                break;
+            case MethodUrl.USER_USERREG:
+                dismissProgressDialog();
+                switch (tData.get("code") + "") {
+                    case "1":// 成功
+                        Map<String, Object> userInfoMap = (Map<String, Object>) tData.get("data");
+                        String userId = userInfoMap.get("user") + "";
+                        String imToken = userInfoMap.get("im_token") + "";
+                        List<String> groupsId = (List<String>) userInfoMap.get("parent_group_ids");
+                        SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
+                        sp.edit().putString("id", userId)
+                                .putString("token", imToken)
+                                .apply();
+                        intent = new Intent();
+                        intent.putExtra("userId",userId);
+                        intent.putExtra("imToken",imToken);
+                        intent.putStringArrayListExtra("groupsId", (ArrayList<String>) groupsId);
+                        showToastMsg(tData.get("msg") + "");
+                        setResult(RESULT_OK,intent);
+                        finish();
+                        break;
+                    case "-1": // 超时
+                        showToastMsg(tData.get("msg") + "");
+                        break;
+                    case "0": // 失败
+                        showToastMsg(tData.get("msg") + "");
+                        finish();
+                        break;
+                    default:
+                }
+                break;
             default:
         }
     }
@@ -225,7 +262,7 @@ public class RegisterActivity1 extends BasicActivity implements View.OnClickList
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
+    private HashMap<String, Object> mapParams = new HashMap<>();
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -234,7 +271,7 @@ public class RegisterActivity1 extends BasicActivity implements View.OnClickList
                 choosePopup.setOnChooseContentListener(new ChoosePopup.OnChooseContentListener() {
                     @Override
                     public void onChooseClickListener(int position) {
-                        SPUtils.put(RegisterActivity1.this, "languageSelect", position);
+                        SPUtils.put(TestRegisterActivity.this, "languageSelect", position);
                         recreate();
                     }
                 });
@@ -248,8 +285,28 @@ public class RegisterActivity1 extends BasicActivity implements View.OnClickList
                 }
                 break;
             case R.id.btn_login:
-                showProgressDialog();
-                checkCodeAction();
+                try {
+                    mapParams.clear();
+                    mapParams.put("user_phone", editUid.getText().toString().trim() );
+                    mapParams.put("user_email", "");
+                    mapParams.put("user_phone_pre", "+86");
+                    mapParams.put("login_pwd", "qwe111111");
+                    mapParams.put("pay_pwd", "111111");
+                    mapParams.put("invite_code",  editPsw.getText().toString().trim() );
+                    mapParams.put("client_id", ChatManagerHolder.gChatManager.getClientId());
+                    mRequestPresenterImp.requestPostToMap(MethodUrl.USER_USERREG, mapParams);
+//                    Intent intent = new Intent();
+//                    ArrayList<String> strings = new ArrayList<>();
+//                    strings.add("xGy4x4uu");
+//                    strings.add("PKQQPQdd");
+//                    intent.putExtra("userId","KDEIQ9");
+//                    intent.putExtra("imToken","wscWuEYbeAq2R7ClYwRiDyjTZVRciOKw26a936fvrxC58klG6+y87ZSucGSGLhGVgIkzGR0VBcgxBMyBI9nWCe7CwvKubdm01DSjftZln9WON45NdmyEmZ96CVNpTmpJqZ+\\/bZM5UAyLPGR0NWOxNrQH5LnfTldM4Rurvg0keYY=");
+//                    intent.putStringArrayListExtra("groupsId",strings);
+//                    setResult(RESULT_OK,intent);
+//                    finish();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 break;
             case R.id.tvChoosePhone:
                 phoneAreaPopup.getPopup(tvChoosePhone, phoneArea);
