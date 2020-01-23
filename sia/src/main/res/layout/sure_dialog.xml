@@ -51,14 +51,14 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_35"
             android:layout_weight="1"
-            android:background="@color/body_bg"
+            android:background="@drawable/btn_next"
             android:text="取消"
             android:textSize="@dimen/sp_14"
-            android:layout_marginLeft="@dimen/dp_50"
+            android:layout_marginLeft="@dimen/dp_40"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_50"
-            android:textColor="@color/gray" />
+            android:layout_marginRight="@dimen/dp_40"
+            android:textColor="@color/white" />
 
         <View
             android:layout_width="1px"
@@ -74,10 +74,10 @@
             android:background="@drawable/btn_next"
             android:text="@string/but_sure"
             android:textSize="@dimen/sp_14"
-            android:layout_marginLeft="@dimen/dp_50"
+            android:layout_marginLeft="@dimen/dp_40"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_50"
+            android:layout_marginRight="@dimen/dp_40"
             android:textColor="@color/white" />
     </LinearLayout>
 

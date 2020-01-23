@@ -14,6 +14,7 @@ import android.os.PowerManager;
 import android.os.Process;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -47,7 +48,7 @@ import com.lr.sia.ui.moudle4.fragment.ZiXunFragment;
 import com.lr.sia.ui.moudle5.fragment.PersonFragment;
 import com.lr.sia.utils.permission.PermissionsUtils;
 import com.lr.sia.utils.permission.RePermissionResultBack;
-import com.lr.sia.utils.tool.JSONUtil;
+import com.lr.sia.utils.tool.LogUtilDebug;
 import com.lr.sia.utils.tool.SPUtils;
 import com.lr.sia.utils.tool.UtilTools;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -61,18 +62,22 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.wildfire.chat.kit.ChatManagerHolder;
 import cn.wildfire.chat.kit.WfcScheme;
 import cn.wildfire.chat.kit.contact.ContactViewModel;
+import cn.wildfire.chat.kit.contact.model.UIUserInfo;
 import cn.wildfire.chat.kit.conversationlist.ConversationListViewModel;
 import cn.wildfire.chat.kit.conversationlist.ConversationListViewModelFactory;
 import cn.wildfire.chat.kit.group.GroupInfoActivity;
+import cn.wildfire.chat.kit.group.GroupViewModel;
 import cn.wildfire.chat.kit.user.ChangeMyNameActivity;
 import cn.wildfire.chat.kit.user.UserInfoActivity;
 import cn.wildfire.chat.kit.user.UserViewModel;
 import cn.wildfirechat.client.ConnectionStatus;
-import cn.wildfirechat.model.Conversation;
+import cn.wildfirechat.model.GroupInfo;
 import cn.wildfirechat.model.UserInfo;
+import cn.wildfirechat.remote.ChatManager;
+import cn.wildfirechat.remote.GeneralCallback;
+import cn.wildfirechat.remote.GetGroupsCallback;
 import cn.wildfirechat.remote.OnConnectionStatusChangeListener;
 import q.rorbin.badgeview.QBadgeView;
 
@@ -137,6 +142,12 @@ public class MainActivity extends BasicActivity {
     private ContactViewModel contactViewModel;
     private QBadgeView unreadMessageUnreadBadgeView;
     private IWXAPI api;
+    private GroupViewModel groupViewModel;
+    private int newsUnReadCount = 0;
+    private int requestUnReadCount = 0;
+    private boolean isOwner = false;
+    private String id;
+    private String token;
 
     @Override
     public int getContentView() {
@@ -171,22 +182,11 @@ public class MainActivity extends BasicActivity {
         }
 
         SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
-        String id = sp.getString("id", "");
-        String token = sp.getString("token", "");
-        if (TextUtils.isEmpty(id) || TextUtils.isEmpty(token)) {
-            if (UtilTools.empty(MbsConstans.RONGYUN_MAP)) {
-                String s = SPUtils.get(MainActivity.this, MbsConstans.SharedInfoConstans.RONGYUN_DATA, "").toString();
-                MbsConstans.RONGYUN_MAP = JSONUtil.getInstance().jsonMap(s);
-            }
-            //id:
-            //token:
-            ChatManagerHolder.gChatManager.connect(MbsConstans.RONGYUN_MAP.get("im_id") + "", MbsConstans.RONGYUN_MAP.get("im_token") + "");
-            sp.edit().putString("id",   MbsConstans.RONGYUN_MAP.get("im_id") + "")
-                    .putString("token", MbsConstans.RONGYUN_MAP.get("im_token") + "")
-                    .apply();
-        }
+        id = sp.getString("id", "");
+        token = sp.getString("token", "");
+        ChatManager.Instance().connect(id, token);
 
-        ChatManagerHolder.gChatManager.addConnectionChangeListener(new OnConnectionStatusChangeListener() {
+        ChatManager.Instance().addConnectionChangeListener(new OnConnectionStatusChangeListener() {
             @Override
             public void onConnectionStatusChange(int status) {
                 switch (status) {
@@ -231,49 +231,71 @@ public class MainActivity extends BasicActivity {
                         unreadNewLable.setText("99+");
                     }
                 }
-
-
             }
         });
-        //联系人ViewModel
-        ContactViewModel contactViewModel = ViewModelProviders.of(this).get(ContactViewModel.class);
-        contactViewModel.friendRequestUpdatedLiveData().observe(this, count -> {
-            if (count == null) {
-                unreadNewLable.setVisibility(View.GONE);
-                if (newsUnReadCount == 0) {
-                    unreadNewLable.setVisibility(View.GONE);
-                } else {
-                    unreadNewLable.setVisibility(View.VISIBLE);
-                    if (newsUnReadCount < 99) {
-                        unreadNewLable.setText(newsUnReadCount + "");
-                    } else {
-                        unreadNewLable.setText("99+");
-                    }
-                }
-
-            } else {
-                requestUnReadCount = count;
-                if (newsUnReadCount == 0 && requestUnReadCount == 0) {
-                    unreadNewLable.setVisibility(View.GONE);
-                } else {
-                    unreadNewLable.setVisibility(View.VISIBLE);
-                    if ((newsUnReadCount + requestUnReadCount) < 100) {
-                        unreadNewLable.setText(newsUnReadCount + requestUnReadCount + "");
-                    } else {
-                        unreadNewLable.setText("99+");
-                    }
-                }
-
-
-            }
-        });
-
         if (checkDisplayName()) {
             ignoreBatteryOption();
         }
+
+        ChatManager.Instance().getMyGroups(new GetGroupsCallback() {
+            @Override
+            public void onSuccess(List<GroupInfo> groupInfos) {
+                if (groupInfos != null && groupInfos.size() > 0) {
+                    for (GroupInfo groupInfo : groupInfos) {
+                        if (groupInfo != null && groupInfo.owner.equals(ChatManager.Instance().getUserId())) {
+                            isOwner = true;
+                            break;
+                        }
+                    }
+                    if (!isOwner) {
+                        createGroup();
+                    }
+                } else {
+                    createGroup();
+                }
+            }
+
+            @Override
+            public void onFail(int errorCode) {
+
+            }
+        });
+//        groupViewModel = ViewModelProviders.of(MainActivity.this).get(GroupViewModel.class);
+//        ChatManager.Instance().addGroupMembers("xGy4x4uu", Arrays.asList(ChatManager.Instance().getUserId()), Arrays.asList(0), null, new GeneralCallback() {
+//            @Override
+//            public void onSuccess() {
+//                groupViewModel.setFavGroup("xGy4x4uu", true);
+//                Log.e("add", "加群成功");
+//            }
+//
+//            @Override
+//            public void onFail(int errorCode) {
+//                Log.e("add", "加群失败");
+//            }
+//        });
     }
-    private int newsUnReadCount = 0;
-    private int requestUnReadCount = 0;
+
+    private void createGroup() {
+        groupViewModel = ViewModelProviders.of(MainActivity.this).get(GroupViewModel.class);
+        UserInfo userInfo = ChatManager.Instance().getUserInfo(id, false);
+        List<UIUserInfo> userInfos = new ArrayList<>();
+        userInfos.add(new UIUserInfo(userInfo));
+        groupViewModel.createGroup(MainActivity.this, userInfos).observe(MainActivity.this, result -> {
+            if (result.isSuccess()) {
+                LogUtilDebug.i("show", "创建群聊成功:" + result.getResult());
+                groupViewModel.setFavGroup(result.getResult(), true);
+                bindIdAction(id, result.getResult());
+            }
+        });
+    }
+
+    private void bindIdAction(String userId, String groupId) {
+        Map<String, Object> bindParams = new HashMap<>();
+        bindParams.put("user_im_code", userId);
+        bindParams.put("group_im_code", groupId);
+        mRequestPresenterImp.requestPostToMap(MethodUrl.USER_SETIMGROUPID, bindParams);
+    }
+
     private void ignoreBatteryOption() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
@@ -318,26 +340,6 @@ public class MainActivity extends BasicActivity {
                     }
                 }).build();
         dialog.show();
-    }
-
-    private void showUnreadMessageBadgeView(int count) {
-        unreadNewLable.setVisibility(View.VISIBLE);
-        unreadNewLable.setText(count);
-    }
-
-    private void hideUnreadMessageBadgeView() {
-        unreadNewLable.setVisibility(View.GONE);
-        unreadNewLable.setText("");
-    }
-
-    public void hideUnreadFriendRequestBadgeView() {
-        unreadNewLable.setVisibility(View.GONE);
-        unreadNewLable.setText("");
-    }
-
-    private void showUnreadFriendRequestBadgeView(int count) {
-        unreadNewLable.setVisibility(View.VISIBLE);
-        unreadNewLable.setText(count);
     }
 
     private void initView() {
@@ -414,6 +416,26 @@ public class MainActivity extends BasicActivity {
     @Override
     public boolean isSupportSwipeBack() {
         return false;
+    }
+
+    private void showUnreadMessageBadgeView(int count) {
+        unreadNewLable.setVisibility(View.VISIBLE);
+        unreadNewLable.setText(count);
+    }
+
+    private void hideUnreadMessageBadgeView() {
+        unreadNewLable.setVisibility(View.GONE);
+        unreadNewLable.setText("");
+    }
+
+    public void hideUnreadFriendRequestBadgeView() {
+        unreadNewLable.setVisibility(View.GONE);
+        unreadNewLable.setText("");
+    }
+
+    private void showUnreadFriendRequestBadgeView(int count) {
+        unreadNewLable.setVisibility(View.VISIBLE);
+        unreadNewLable.setText(count);
     }
 
     /**

@@ -32,6 +32,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.wildfire.chat.kit.ChatManagerHolder;
 
 public class RegistActivity extends BasicActivity implements RequestView {
 
@@ -137,21 +138,26 @@ public class RegistActivity extends BasicActivity implements RequestView {
                 mapParams.clear();
                 switch (tData.get("code") + "") {
                     case "1":// 成功
-                        String loginPass = etLoginPass.getText().toString().trim();
-                        String tradePass = etTradePass.getText().toString().trim();
-                        String account = etInputAccount.getText().toString().trim();
-                        if (account.matches(MbsConstans.PHONE_REGEX) || account.matches(MbsConstans.EMAIL_REGEX)) {
-                            mapParams.put("user_phone", previousAccount);
-                            mapParams.put("user_email", account);
-                            mapParams.put("user_phone_pre", phoneArea);
-                            mapParams.put("login_pwd", loginPass);
-                            mapParams.put("pay_pwd", tradePass);
-                            mapParams.put("invite_code", etInviteCode.getText().toString().trim());
-                        }
-                        Intent intent = new Intent(RegistActivity.this, RemeberCodeActivity.class);
-                        intent.putExtra("registParam", mapParams);
-                        startActivityForResult(intent, MbsConstans.IS_APPROVE_RIGHT);
+                        try {
+                            String loginPass = etLoginPass.getText().toString().trim();
+                            String tradePass = etTradePass.getText().toString().trim();
+                            String account = etInputAccount.getText().toString().trim();
+                            if (account.matches(MbsConstans.PHONE_REGEX) || account.matches(MbsConstans.EMAIL_REGEX)) {
+                                mapParams.put("user_phone", previousAccount);
+                                mapParams.put("user_email", account);
+                                mapParams.put("user_phone_pre", phoneArea);
+                                mapParams.put("login_pwd", loginPass);
+                                mapParams.put("pay_pwd", tradePass);
+                                mapParams.put("invite_code", etInviteCode.getText().toString().trim());
+                                mapParams.put("client_id", ChatManagerHolder.gChatManager.getClientId());
+                            }
+                            Intent intent = new Intent(RegistActivity.this, RemeberCodeActivity.class);
+                            intent.putExtra("registParam", mapParams);
+                            startActivityForResult(intent, MbsConstans.IS_APPROVE_RIGHT);
 //                        registAction();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         break;
                     case "-1": // 超时
                         showToastMsg(tData.get("msg") + "");
@@ -273,8 +279,10 @@ public class RegistActivity extends BasicActivity implements RequestView {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case MbsConstans.IS_APPROVE_RIGHT:
-                    setResult(RESULT_OK);
-                    finish();
+                    if (data != null) {
+                        setResult(RESULT_OK, data);
+                        finish();
+                    }
                     break;
                 default:
             }
@@ -285,7 +293,7 @@ public class RegistActivity extends BasicActivity implements RequestView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
+        // TODO: add setContentView(...) invocationetInviteCode
         ButterKnife.bind(this);
     }
 
@@ -312,30 +320,30 @@ public class RegistActivity extends BasicActivity implements RequestView {
 //            etInputAccount.setHint(R.string.inputPhoneAccount);
 //        }
 
-        etInviteCode.addTextChangedListener(new CustomerTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().trim().length() > 0
-                        && etTradePass.getText().toString().trim().length() > 5
-                        && etTradePass1.getText().toString().trim().length() > 5
-                        && etLoginPass.getText().toString().trim().length() > 0
-                        && etLoginPass1.getText().toString().trim().length() > 0
-//                        && etInputAccount.getText().toString().trim().length() > 0
-//                        && etVerification.getText().toString().trim().length() > 0
-                ) {
-                    btNext.setEnabled(true);
-                } else {
-                    btNext.setEnabled(false);
-                }
-            }
-        });
+//        etInviteCode.addTextChangedListener(new CustomerTextWatcher() {
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (s.toString().trim().length() > 0
+//                        && etTradePass.getText().toString().trim().length() > 5
+//                        && etTradePass1.getText().toString().trim().length() > 5
+//                        && etLoginPass.getText().toString().trim().length() > 0
+//                        && etLoginPass1.getText().toString().trim().length() > 0
+////                        && etInputAccount.getText().toString().trim().length() > 0
+////                        && etVerification.getText().toString().trim().length() > 0
+//                ) {
+//                    btNext.setEnabled(true);
+//                } else {
+//                    btNext.setEnabled(false);
+//                }
+//            }
+//        });
         etLoginPass.addTextChangedListener(new CustomerTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().trim().length() > 5
                         && etTradePass.getText().toString().trim().length() > 5
                         && etTradePass1.getText().toString().trim().length() > 5
-                        && etInviteCode.getText().toString().trim().length() > 0
+//                        && etInviteCode.getText().toString().trim().length() > 0
                         && etLoginPass1.getText().toString().trim().length() > 5
 //                        && etInputAccount.getText().toString().trim().length() > 0
 //                        && etVerification.getText().toString().trim().length() > 0
@@ -352,7 +360,7 @@ public class RegistActivity extends BasicActivity implements RequestView {
                 if (s.toString().trim().length() > 5
                         && etTradePass.getText().toString().trim().length() > 5
                         && etTradePass1.getText().toString().trim().length() > 5
-                        && etInviteCode.getText().toString().trim().length() > 0
+//                        && etInviteCode.getText().toString().trim().length() > 0
                         && etLoginPass.getText().toString().trim().length() > 5
 //                        && etInputAccount.getText().toString().trim().length() > 0
 //                        && etVerification.getText().toString().trim().length() > 0
@@ -369,7 +377,7 @@ public class RegistActivity extends BasicActivity implements RequestView {
                 if (s.toString().trim().length() > 5
                         && etLoginPass1.getText().toString().trim().length() > 5
                         && etTradePass1.getText().toString().trim().length() > 5
-                        && etInviteCode.getText().toString().trim().length() > 0
+//                        && etInviteCode.getText().toString().trim().length() > 0
                         && etLoginPass.getText().toString().trim().length() > 5
 //                        && etInputAccount.getText().toString().trim().length() > 0
 //                        && etVerification.getText().toString().trim().length() > 0
@@ -386,7 +394,7 @@ public class RegistActivity extends BasicActivity implements RequestView {
                 if (s.toString().trim().length() > 5
                         && etLoginPass1.getText().toString().trim().length() > 5
                         && etTradePass.getText().toString().trim().length() > 5
-                        && etInviteCode.getText().toString().trim().length() > 0
+//                        && etInviteCode.getText().toString().trim().length() > 0
                         && etLoginPass.getText().toString().trim().length() > 5
 //                        && etInputAccount.getText().toString().trim().length() > 0
 //                        && etVerification.getText().toString().trim().length() > 0
@@ -485,9 +493,9 @@ public class RegistActivity extends BasicActivity implements RequestView {
                 break;
             case R.id.bt_next:
 
-                if (UtilTools.isEmpty(etInviteCode, getString(R.string.inviteCode))) {
-                    return;
-                }
+//                if (UtilTools.isEmpty(etInviteCode, getString(R.string.inviteCode))) {
+//                    return;
+//                }
 //                if (UtilTools.isEmpty(etInputAccount, notice)) {
 //                    return;
 //                }
@@ -518,53 +526,46 @@ public class RegistActivity extends BasicActivity implements RequestView {
     }
 
     private void checkCodeAction() {
-        String loginPass = etLoginPass.getText().toString().trim();
-        String loginPass1 = etLoginPass1.getText().toString().trim();
-        String tradePass = etTradePass.getText().toString().trim();
-        String tradePass1 = etTradePass1.getText().toString().trim();
-        if (loginPass.matches(MbsConstans.PASS_REGEX)
-                && loginPass1.matches(MbsConstans.PASS_REGEX)
-                && loginPass.equals(loginPass1)
-                && tradePass.equals(tradePass1)) {
-            if ("1".equals(type1)) {
-                mapParams.put("user_phone", previousAccount);
-                mapParams.put("user_phone_pre", phoneArea);
-                mapParams.put("user_email", "");
-            } else if ("2".equals(type1)) {
-                mapParams.put("user_email", previousAccount);
-                mapParams.put("user_phone_pre", "");
-                mapParams.put("user_phone", "");
-            }
-            mapParams.put("login_pwd", loginPass);
-            mapParams.put("pay_pwd", tradePass);
-            mapParams.put("invite_code", etInviteCode.getText().toString().trim());
-            Intent intent = new Intent(RegistActivity.this, RemeberCodeActivity.class);
-            intent.putExtra("registParam", mapParams);
-            startActivityForResult(intent, MbsConstans.IS_APPROVE_RIGHT);
-//            String account = etInputAccount.getText().toString().trim() + "";
-//            map.put("account", account);
-//            if (account.matches(MbsConstans.EMAIL_REGEX)) {
-//                map.put("account_type", "2");
-//                map.put("verify_type", "1");
-//                map.put("verify_code", etVerification.getText().toString().trim() + "");
-//                mRequestPresenterImp.requestPostToMap(MethodUrl.COMMON_CHECKSMSVERIFY, map);
-//            } else {
-//                if (!account.matches(MbsConstans.PHONE_REGEX)) {
-//                    showToastMsg(R.string.inputRightPhone);
-//                } else {
-//                    showToastMsg(R.string.inputRigthEmail);
-//                }
-//            }
-        } else {
-            if (!loginPass.matches(MbsConstans.PASS_REGEX)) {
-                showToastMsg(R.string.seal_login_toast_passwords_invalid);
-            } else if (!loginPass1.matches(MbsConstans.PASS_REGEX)) {
-                showToastMsg(R.string.seal_login_toast_passwords_invalid);
-            } else if (!loginPass.equals(loginPass1)) {
-                showToastMsg(R.string.loginPassErrorNotice);
+        try {
+
+
+            String loginPass = etLoginPass.getText().toString().trim();
+            String loginPass1 = etLoginPass1.getText().toString().trim();
+            String tradePass = etTradePass.getText().toString().trim();
+            String tradePass1 = etTradePass1.getText().toString().trim();
+            if (loginPass.matches(MbsConstans.PASS_REGEX)
+                    && loginPass1.matches(MbsConstans.PASS_REGEX)
+                    && loginPass.equals(loginPass1)
+                    && tradePass.equals(tradePass1)) {
+                if ("1".equals(type1)) {
+                    mapParams.put("user_phone", previousAccount);
+                    mapParams.put("user_phone_pre", phoneArea);
+                    mapParams.put("user_email", "");
+                } else if ("2".equals(type1)) {
+                    mapParams.put("user_email", previousAccount);
+                    mapParams.put("user_phone_pre", "");
+                    mapParams.put("user_phone", "");
+                }
+                mapParams.put("login_pwd", loginPass);
+                mapParams.put("pay_pwd", tradePass);
+                mapParams.put("invite_code", etInviteCode.getText().toString().trim());
+                mapParams.put("client_id", ChatManagerHolder.gChatManager.getClientId());
+                Intent intent = new Intent(RegistActivity.this, RemeberCodeActivity.class);
+                intent.putExtra("registParam", mapParams);
+                startActivityForResult(intent, MbsConstans.IS_APPROVE_RIGHT);
             } else {
-                showToastMsg(R.string.tradePassErrorNotice);
+                if (!loginPass.matches(MbsConstans.PASS_REGEX)) {
+                    showToastMsg(R.string.seal_login_toast_passwords_invalid);
+                } else if (!loginPass1.matches(MbsConstans.PASS_REGEX)) {
+                    showToastMsg(R.string.seal_login_toast_passwords_invalid);
+                } else if (!loginPass.equals(loginPass1)) {
+                    showToastMsg(R.string.loginPassErrorNotice);
+                } else {
+                    showToastMsg(R.string.tradePassErrorNotice);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

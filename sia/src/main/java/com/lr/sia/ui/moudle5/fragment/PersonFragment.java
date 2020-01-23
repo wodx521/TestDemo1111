@@ -47,6 +47,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import cn.wildfirechat.remote.ChatManager;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class PersonFragment extends BasicFragment implements View.OnClickListener, RequestView {
@@ -315,6 +316,7 @@ public class PersonFragment extends BasicFragment implements View.OnClickListene
                 }
                 intent = new Intent(getActivity(), LoginActivity1.class);
                 startActivity(intent);
+                ChatManager.Instance().disconnect(false);
                 break;
             case R.id.llLockEmpty:
                 intent = new Intent(getActivity(), LockEmptyActivity.class);

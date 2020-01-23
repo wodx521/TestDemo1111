@@ -192,8 +192,10 @@ public class CodeCheckActivity extends BasicActivity {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case MbsConstans.IS_APPROVE_RIGHT:
-                    setResult(RESULT_OK);
-                    finish();
+                    if (data != null) {
+                        setResult(RESULT_OK, data);
+                        finish();
+                    }
                     break;
                 default:
             }

@@ -142,8 +142,6 @@ public class ConversationFragment extends Fragment implements
                 }else {
                     initPopupWindow(uiMessage);
                 }
-
-
                 return;
             }
             MessageContent content = uiMessage.message.content;
@@ -222,7 +220,6 @@ public class ConversationFragment extends Fragment implements
                         .putString(entry.getKey(), entry.getValue())
                         .apply();
             }
-
         }
     };
 

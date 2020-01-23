@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -15,22 +16,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.jaeger.library.StatusBarUtil;
 import com.lr.sia.R;
 import com.lr.sia.api.MethodUrl;
 import com.lr.sia.basic.BasicActivity;
 import com.lr.sia.basic.MbsConstans;
+import com.lr.sia.mvp.presenter.RequestPresenterImp;
 import com.lr.sia.ui.moudle5.dialog.ChoosePopup;
 import com.lr.sia.utils.tool.JSONUtil;
+import com.lr.sia.utils.tool.LogUtilDebug;
 import com.lr.sia.utils.tool.SPUtils;
 import com.lr.sia.utils.tool.UtilTools;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import cn.wildfire.chat.kit.ChatManagerHolder;
+import cn.wildfire.chat.kit.contact.model.UIUserInfo;
+import cn.wildfire.chat.kit.group.GroupViewModel;
+import cn.wildfirechat.model.GroupInfo;
+import cn.wildfirechat.model.UserInfo;
+import cn.wildfirechat.remote.ChatManager;
+import cn.wildfirechat.remote.GeneralCallback;
+import cn.wildfirechat.remote.GetGroupsCallback;
 
 /**
  * @author LaiRui
@@ -45,6 +61,7 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
     private String mPassWord;
     private ChoosePopup choosePopup;
     private List<Map<String, Object>> mapList = new ArrayList<>();
+    private GroupViewModel groupViewModel;
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -283,7 +300,7 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
                 break;
             case R.id.code_register:
                 intent = new Intent(LoginActivity1.this, RegisterActivity1.class);
-                startActivity(intent);
+                startActivityForResult(intent, MbsConstans.IS_APPROVE_RIGHT);
                 break;
             default:
         }
@@ -318,6 +335,93 @@ public class LoginActivity1 extends BasicActivity implements CompoundButton.OnCh
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case MbsConstans.IS_APPROVE_RIGHT:
+                    if (data != null) {
+                        String userId = data.getStringExtra("userId");
+                        String imToken = data.getStringExtra("imToken");
+                        ArrayList<String> groupsId = data.getStringArrayListExtra("groupsId");
+                        ChatManagerHolder.gChatManager.connect(userId, imToken);
+                        groupViewModel = ViewModelProviders.of(LoginActivity1.this).get(GroupViewModel.class);
+                        ChatManager.Instance().getMyGroups(new GetGroupsCallback() {
+                            @Override
+                            public void onSuccess(List<GroupInfo> groupInfos) {
+                                GroupInfo groupInfo1 = new GroupInfo();
+                                groupInfo1.owner = userId;
+                                if (groupInfos == null || groupInfos.isEmpty()) {
+                                    // 如果群组为空创建群组
+                                    createGroupInfo(userId);
+                                } else {
+                                    if (!groupInfos.contains(groupInfo1)) {
+                                        createGroupInfo(userId);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFail(int errorCode) {
+                            }
+                        });
+
+                        if (groupsId != null && groupsId.size() > 0) {
+                            ExecutorService fixedThreadPool = Executors.newFixedThreadPool(groupsId.size());
+                            for (String group : groupsId) {
+                                fixedThreadPool.execute(new Runnable() {
+                                    public void run() {
+                                        try {
+                                            Thread.sleep(10000);
+                                            ChatManagerHolder.gChatManager.addGroupMembers(group, Arrays.asList(ChatManager.Instance().getUserId()), Arrays.asList(0), null, new GeneralCallback() {
+                                                @Override
+                                                public void onSuccess() {
+                                                    groupViewModel.setFavGroup(group, true);
+                                                    Log.e("add", "加群成功");
+                                                }
+
+                                                @Override
+                                                public void onFail(int errorCode) {
+                                                    Log.e("add", "加群失败");
+                                                }
+                                            });
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+
+                            }
+                        }
+                    }
+                    break;
+                default:
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void createGroupInfo(String userId) {
+        UserInfo userInfo = ChatManager.Instance().getUserInfo(userId, false);
+        List<UIUserInfo> userInfos = new ArrayList<>();
+        userInfos.add(new UIUserInfo(userInfo));
+        groupViewModel.createGroup(LoginActivity1.this, userInfos).observe(LoginActivity1.this, result -> {
+            if (result.isSuccess()) {
+                LogUtilDebug.i("show", "创建群聊成功:" + result.getResult());
+                groupViewModel.setFavGroup(result.getResult(), true);
+                bindIdAction(userId, result.getResult());
+            }
+        });
+    }
+
+    private void bindIdAction(String userId, String groupId) {
+        mRequestPresenterImp = new RequestPresenterImp(this, LoginActivity1.this);
+        Map<String, Object> bindParams = new HashMap<>();
+        bindParams.put("user_im_code", userId);
+        bindParams.put("group_im_code", groupId);
+        mRequestPresenterImp.requestPostToMap(MethodUrl.USER_SETIMGROUPID, bindParams);
     }
 }
 

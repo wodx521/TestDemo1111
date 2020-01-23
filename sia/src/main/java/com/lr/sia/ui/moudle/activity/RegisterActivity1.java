@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.google.android.material.tabs.TabLayout;
 import com.jaeger.library.StatusBarUtil;
 import com.lr.sia.BuildConfig;
@@ -178,16 +180,16 @@ public class RegisterActivity1 extends BasicActivity implements View.OnClickList
                 switch (tData.get("code") + "") {
                     case "1":// 成功
                         intent = new Intent(RegisterActivity1.this, RegistActivity.class);
-                            if (tlRegisterAccount.getSelectedTabPosition() == 0) {
-                                intent.putExtra("type", "1");
-                                String account = editUid.getText().toString().trim();
-                                intent.putExtra("account", account);
-                            }else if (tlRegisterAccount.getSelectedTabPosition() == 1){
-                                intent.putExtra("type", "2");
-                                String account = editEmail.getText().toString().trim();
-                                intent.putExtra("account", account);
-                            }
-                            intent.putExtra("phoneArea", tvChoosePhone.getText().toString());
+                        if (tlRegisterAccount.getSelectedTabPosition() == 0) {
+                            intent.putExtra("type", "1");
+                            String account = editUid.getText().toString().trim();
+                            intent.putExtra("account", account);
+                        } else if (tlRegisterAccount.getSelectedTabPosition() == 1) {
+                            intent.putExtra("type", "2");
+                            String account = editEmail.getText().toString().trim();
+                            intent.putExtra("account", account);
+                        }
+                        intent.putExtra("phoneArea", tvChoosePhone.getText().toString());
                         startActivityForResult(intent, MbsConstans.IS_APPROVE_RIGHT);
                         break;
                     case "-1": // 超时
@@ -206,6 +208,22 @@ public class RegisterActivity1 extends BasicActivity implements View.OnClickList
     @Override
     public void loadDataError(Map<String, Object> map, String mType) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case MbsConstans.IS_APPROVE_RIGHT:
+                    if (data != null) {
+                        setResult(RESULT_OK, data);
+                        finish();
+                    }
+                    break;
+                default:
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

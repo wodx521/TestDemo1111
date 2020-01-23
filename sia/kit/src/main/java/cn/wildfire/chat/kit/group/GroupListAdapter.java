@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lr.sia.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.wildfirechat.model.GroupInfo;
@@ -23,12 +24,15 @@ public class GroupListAdapter extends RecyclerView.Adapter<GroupViewHolder> {
         this.fragment = fragment;
     }
 
-    public void setGroupInfos(List<GroupInfo> groupInfos) {
-        this.groupInfos = groupInfos;
+    public List<GroupInfo> getGroupInfos() {
+        if (groupInfos == null) {
+            groupInfos = new ArrayList<>();
+        }
+        return groupInfos;
     }
 
-    public List<GroupInfo> getGroupInfos() {
-        return groupInfos;
+    public void setGroupInfos(List<GroupInfo> groupInfos) {
+        this.groupInfos = groupInfos;
     }
 
     public void setOnGroupItemClickListener(OnGroupItemClickListener onGroupItemClickListener) {

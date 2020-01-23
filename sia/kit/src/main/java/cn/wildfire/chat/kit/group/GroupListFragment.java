@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lr.sia.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,7 +34,7 @@ public class GroupListFragment extends Fragment implements OnGroupItemClickListe
     TextView tipTextView;
     @BindView(R.id.groupsLinearLayout)
     LinearLayout groupsLinearLayout;
-
+    private List<GroupInfo> groupInfoList = new ArrayList<>();
     private GroupListAdapter groupListAdapter;
     private OnGroupItemClickListener onGroupItemClickListener;
 
@@ -44,20 +45,29 @@ public class GroupListFragment extends Fragment implements OnGroupItemClickListe
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        reloadGroupList();
+        if (groupListAdapter != null && isVisibleToUser) {
+            reloadGroupList();
+        }
     }
 
     public void reloadGroupList() {
         ChatManager.Instance().getMyGroups(new GetGroupsCallback() {
             @Override
             public void onSuccess(List<GroupInfo> groupInfos) {
+                groupInfoList.clear();
                 if (groupInfos == null || groupInfos.isEmpty()) {
                     groupsLinearLayout.setVisibility(View.GONE);
                     tipTextView.setVisibility(View.VISIBLE);
                     return;
+                } else {
+                    for (GroupInfo groupInfo : groupInfos) {
+                        if (groupInfo != null) {
+                            groupInfoList.add(groupInfo);
+                        }
+                    }
+                    groupListAdapter.setGroupInfos(groupInfoList);
+                    groupListAdapter.notifyDataSetChanged();
                 }
-                groupListAdapter.setGroupInfos(groupInfos);
-                groupListAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -69,13 +79,6 @@ public class GroupListFragment extends Fragment implements OnGroupItemClickListe
         });
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        reloadGroupList();
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -83,6 +86,12 @@ public class GroupListFragment extends Fragment implements OnGroupItemClickListe
         ButterKnife.bind(this, view);
         init();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        reloadGroupList();
     }
 
     private void init() {

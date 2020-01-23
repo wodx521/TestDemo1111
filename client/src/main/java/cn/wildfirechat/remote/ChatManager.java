@@ -3477,11 +3477,11 @@ public class ChatManager {
                     mClient.registerMessageContent(msgName);
                 }
 
-                if (startLog) {
+//                if (startLog) {
                     startLog();
-                } else {
-                    stopLog();
-                }
+//                } else {
+//                    stopLog();
+//                }
 
                 if (!TextUtils.isEmpty(deviceToken)) {
                     mClient.setDeviceToken(deviceToken, pushType.value());
